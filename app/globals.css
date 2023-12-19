@@ -18,5 +18,6 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  padding: 2rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
 }
