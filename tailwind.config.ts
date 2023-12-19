@@ -8,6 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Courier Prime', 'sans-serif' ],
+        lobster: ['Lobster', 'sans-serif'],
+        marker: ['Permanent Marker', 'cursive'],
+        poppins: ['Poppins', 'sans-serif'],
+         // Replace 'Courier Prime' with your desired font family
+      },
+      screens: {
+        'lg': '1024px', // Large screen size
+        'md': '768px', // Normal screen size
+        'sm': '640px', // Android screen size
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -21,4 +33,5 @@ const config: Config = {
   },
   plugins: [],
 }
-export default config
+
+export default config;
