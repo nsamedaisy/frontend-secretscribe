@@ -7,11 +7,11 @@ const viewSecretMessage = () => {
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
-        <h1 className="text-5xl font-extrabold font-sans items-center">
-          My Answers 😅{" "}
+        <h1 className="text-5xl font-extrabold text-cream items-center">
+          My SecretScribe 😅{" "}
         </h1>
         <p className="font-semibold w-[20vw] my-4">
-          👇 Scroll 👇 down to check out the messages that you have received
+          👇 Scroll 👇 down or check 👇 out the messages that you have received
         </p>
 
         {/* Recieve secret message */}
@@ -33,6 +33,11 @@ const viewSecretMessage = () => {
               You Have Reached The End! 🏁 🙋 Ask your friends to send more
               messages or view Archived Messaged
             </p>
+          </fieldset>
+
+          <fieldset className="border-2 hidden border-red-600 text-red-700 font-bold rounded p-3 mt-3">
+            {/* Found no message text  */}
+            <p> Sorry 😔 you haven't recieve any message in the past 48hours. Share your link to yours friends to get secret message(s)</p>
           </fieldset>
         </div>
 
