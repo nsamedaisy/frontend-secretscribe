@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -9,11 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Courier Prime', 'sans-serif' ],
+        abril:[ 'Abril Fatface', 'serif'],
+        sans: ['Courier Prime', 'sans-serif'],
         lobster: ['Lobster', 'sans-serif'],
         marker: ['Permanent Marker', 'cursive'],
         poppins: ['Poppins', 'sans-serif'],
-         // Replace 'Courier Prime' with your desired font family
+        // Replace 'Courier Prime' with your desired font family
       },
       screens: {
         'lg': '1024px', // Large screen size
@@ -29,9 +30,27 @@ const config: Config = {
         green: "#0D533B",
         cream: "#FFF4DE",
       },
+      keyframes: {
+        'slide-in-right': {
+          '0%': {
+            transform: 'translateX(100%)',
+            opacity: '0',
+          },
+          '50%': {
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+            opacity: '0',
+          },
+        },
+      },
+      animation: {
+        'slide-in-right': 'slide-in-right 10s linear infinite',
+      },
     },
   },
   plugins: [],
-}
+};
 
 export default config;
