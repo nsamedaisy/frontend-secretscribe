@@ -19,10 +19,10 @@ const viewSecretMessage = () => {
           <fieldset className="border-2 border-cream rounded p-4">
             <legend className="text-sm font-semibold">Messages:</legend>
             <div className="flex  flex-col mt-2">
-              <p className="text-base">Message content</p>
+              <p className="text-base">I know so well what you can do thats why i cant tell you this to your face</p>
               <p className="text-sm mt-4">_anonymous Time sent</p>
               <button className="border rounded-xl mt-3 py-1">
-                Share response
+              ✨ Share response ✨
               </button>
             </div>
             {/* Place your received messages and time sent here */}
@@ -37,7 +37,7 @@ const viewSecretMessage = () => {
         </div>
 
         <button className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2">
-          <img src="/time.png" alt="Google logo" className="w-8 h-6 mr-3" />
+          <img src="/time.png" alt="time logo" className="w-8 h-6 mr-3" />
           Load More
         </button>
 
