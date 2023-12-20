@@ -29,6 +29,7 @@ const config: Config = {
       colors: {
         green: "#0D533B",
         cream: "#FFF4DE",
+        watGreen: "#25D366",
       },
       keyframes: {
         'slide-in-right': {
