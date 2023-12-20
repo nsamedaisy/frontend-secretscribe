@@ -1,13 +1,27 @@
 import Link from "next/link";
 import React from "react";
+import { useState } from "react";
 
 const LandingPage = () => {
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+
   return (
     <div className="bg-green text-cream min-h-screen">
       <div className="h-[95vh]">
-        <header className="px-4 py-6 flex justify-between items-center sm:px-8 md:px-16 lg:px-60 shadow-[rgba(0,0,15,0.5)_10px_5px_4px_0px] fixed w-full bg-green z-40">
-          <h1 className="text-5xl font-extrabold font-marker">SecretScribe</h1>
-          <nav className="font-mono">
+
+      <header className="px-4 py-6 flex justify-between items-center sm:px-8 md:px-16 lg:px-60 shadow-[rgba(0,0,0,0.5)_7px_5px_3px_0px] fixed w-full bg-green z-40">
+          <div className="flex items-center">
+            
+            <h1 className="hidden sm:block text-5xl font-extrabold font-marker">SecretScribe</h1>
+            <img src="/sslogo.png" alt="SecretScribe Logo" className="hidden md:block w-20 h-16 lg:block" />
+          </div>
+          <nav className="font-mono hidden sm:block">
             <ul className="flex justify-end space-x-8">
               <li>
                 <Link
@@ -36,7 +50,8 @@ const LandingPage = () => {
             </ul>
           </nav>
         </header>
-        <section className="pt-20 px-4 sm:px-8 md:px-16 lg:px-60">
+
+        <section className="pt-20 sm:px-8 md:px-16 lg:px-60">
           <img
             src="/ss.png"
             alt="cartoon phone"
@@ -44,7 +59,7 @@ const LandingPage = () => {
           />
           <div>
             <p className="text-center mt-16 text-3xl font-poppins">Anonymously</p>
-            <p className="mt-6 text-8xl font-extrabold font-marker text-cream text-center">
+            <p className="mt-6 text-7xl font-extrabold font-marker text-cream text-center">
               Share Thoughts, and Confessions In Secrets.
             </p>
           </div>
