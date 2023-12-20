@@ -41,6 +41,19 @@ const writeSecretMessage = () => {
           Say what do you think about daisyb3ll3 or Leave a feedback for
           daisyb3ll3 anonymously using the form above.. 🥰 Thank You!! 😍😊
         </p>
+{/* after confirmation the user should be chance to create their own link  */}
+        <div className="hidden">
+          <p>
+          Click here 👇🏿 to create your own secret message link!
+          </p>
+          <Link
+          href="/login"
+          className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+        >
+         🔏 Create Link
+        </Link>
+        </div>
+
       </div>
     </div>
   );
