@@ -34,7 +34,7 @@ const LandingPage = () => {
               </li>
               <li>
                 <Link
-                  href="/getstarted"
+                  href="/register"
                   className="text-lg font-medium text-cream hover:text-white hover:underline"
                 >
                   Get Started
