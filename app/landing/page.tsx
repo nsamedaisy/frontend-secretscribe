@@ -1,14 +1,16 @@
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
+
+// import { FiMenu } from 'react-icons/fi';
 
 const LandingPage = () => {
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // const handleMenuToggle = () => {
+  //   setIsMenuOpen(!isMenuOpen);
+  // };
 
 
   return (
@@ -17,9 +19,8 @@ const LandingPage = () => {
 
       <header className="px-4 py-6 flex justify-between items-center sm:px-8 md:px-16 lg:px-60 shadow-[rgba(0,0,0,0.5)_7px_5px_3px_0px] fixed w-full bg-green z-40">
           <div className="flex items-center">
-            
-            <h1 className="hidden sm:block text-5xl font-extrabold font-marker">SecretScribe</h1>
-            <img src="/sslogo.png" alt="SecretScribe Logo" className="hidden md:block w-20 h-16 lg:block" />
+            <img src="/sslogo.png" alt="SecretScribe Logo" className="hidden md:block w-16 h-16 lg:block" />
+            <h1 className="hidden sm:block text-5xl font-extrabold font-marker">ecretScribe</h1>
           </div>
           <nav className="font-mono hidden sm:block">
             <ul className="flex justify-end space-x-8">
@@ -88,8 +89,7 @@ const LandingPage = () => {
 
       <section className="text-center py-14 border-b overflow-x-hidden">
         <p className="text-4xl font-marker text-white font-extrabold mb-4 animate-slide-in-right">
-          Type your message anonymously, Choose a category for your message,
-          Submit your message and let others discover it.
+          Type your message anonymously, Submit your message and let others discover it, Choose a category for your message,.
         </p>
       </section>
 
