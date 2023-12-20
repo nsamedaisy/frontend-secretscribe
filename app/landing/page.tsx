@@ -5,10 +5,10 @@ const LandingPage = () => {
   return (
     <div className="bg-green text-cream min-h-screen">
       <div className="h-[95vh]">
-        <header className="py-5 flex justify-between items-center px-20 shadow-[rgba(0,0,15,0.5)_10px_5px_4px_0px]">
+        <header className="px-4 py-6 flex justify-between items-center sm:px-8 md:px-16 lg:px-60 shadow-[rgba(0,0,15,0.5)_10px_5px_4px_0px] fixed w-full bg-green z-40">
           <h1 className="text-5xl font-extrabold font-marker">SecretScribe</h1>
           <nav className="font-mono">
-            <ul className="flex justify-center space-x-8">
+            <ul className="flex justify-end space-x-8">
               <li>
                 <Link
                   className="text-lg font-medium text-cream hover:text-white hover:underline"
@@ -36,7 +36,7 @@ const LandingPage = () => {
             </ul>
           </nav>
         </header>
-        <section>
+        <section className="pt-20 px-4 sm:px-8 md:px-16 lg:px-60">
           <img
             src="/ss.png"
             alt="cartoon phone"
@@ -50,41 +50,37 @@ const LandingPage = () => {
           </div>
         </section>
       </div>
-
      
-      <section className="py-20 px-60 bg-cream text-gray-800">
-     
-
+      <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-60 bg-cream text-gray-800">
         <h2 className="text-5xl font-extrabold font-abril pb-20 leading-relaxed">
-       SecretScribe is an interactive anonymous messaging app. Create your Profile Link and Send it to all your contacts to check what do your friends think about you. SecretScribe is free!
+          SecretScribe is an interactive anonymous messaging app. Create your Profile Link and Send it to all your contacts to check what do your friends think about you. SecretScribe is free!
         </h2>
-        <div className="flex items-center">
-          <div className="mr- mr-40">
-        <ul className="text-xl font-mono leading-relaxed w-[35vw]">
-          <li className="mb-4">
-            Express yourself freely without revealing your identity, Discover and connect with anonymous messages from others.
-          </li>
-          <li className="mb-4">Explore different categories and topics, Join a community where secrets are shared and understood</li>
-        </ul>
-        <button className="hover:bg-green hover:text-cream py-2 mt-6 text-green px-8 font-mono text-lg border-2 border-green">
-          Get Started
-        </button>
-        </div>
-        <img src="/faceoff.png" alt="face Off" className="w-96 h-96 w-"/>
+        <div className="flex flex-col sm:flex-row items-center">
+          <div className="mr-0 sm:mr-40">
+            <ul className="text-xl font-mono leading-relaxed sm:w-[35vw]">
+              <li className="mb-4">
+                Express yourself freely without revealing your identity, Discover and connect with anonymous messages from others.
+              </li>
+              <li className="mb-4">Explore different categories and topics, Join a community where secrets are shared and understood</li>
+            </ul>
+            <button className="hover:bg-green hover:text-cream py-2 mt-6 text-green px-8 font-mono text-lg border-2 border-green">
+              Get Started
+            </button>
+          </div>
+          <img src="/faceoff.png" alt="face Off" className="w-44 h-44 sm:w-96 sm:h-96" />
         </div>
       </section>
 
-      <section className="py-16 text-center border-b">
-            <p className="text-3xl font-extrabold mb-4 animate-slide-in-right">
-              Type your message anonymously, Choose a category for your message,
-              Submit your message and let others discover it.
-            </p>
-      </section>
-
-      <footer className="py-4 text-center">
-        <p className="text-white">
-          &copy; 2023 Secretscribe. All rights reserved.
+      <section className="text-center py-14 border-b">
+        <p className="text-4xl font-marker text-white font-extrabold mb-4 animate-slide-in-right">
+          Type your message anonymously, Choose a category for your message,
+          Submit your message and let others discover it.
         </p>
+      </section>
+
+      <footer className="py-6 text-center flex justify-between font-mono text-white px-4 sm:px-8 md:px-16 lg:px-60">
+        <p>&copy; 2023 Secretscribe. All rights reserved.</p>
+        <p>Created by D&R</p>
       </footer>
     </div>
   );
