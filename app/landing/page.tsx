@@ -17,7 +17,7 @@ const LandingPage = () => {
     <div className="bg-green text-cream min-h-screen">
       <div className="h-[95vh]">
 
-      <header className="px-4 py-6 flex justify-between items-center sm:px-8 md:px-16 lg:px-60 shadow-[rgba(0,0,0,0.5)_7px_5px_3px_0px] fixed w-full bg-green z-40">
+      <header className="px-4 py-4 flex justify-between items-center sm:px-8 md:px-16 lg:px-60 shadow-[rgba(0,0,0,0.5)_7px_5px_3px_0px] fixed w-full bg-green z-40">
           <div className="flex items-center">
             <img src="/sslogo.png" alt="SecretScribe Logo" className="hidden md:block w-16 h-16 lg:block" />
             <h1 className="hidden sm:block text-5xl font-extrabold font-marker">ecretScribe</h1>
@@ -34,7 +34,7 @@ const LandingPage = () => {
               </li>
               <li>
                 <Link
-                  href="/getstarted"
+                  href="/login"
                   className="text-lg font-medium text-cream hover:text-white hover:underline"
                 >
                   Get Started
@@ -79,9 +79,9 @@ const LandingPage = () => {
               </li>
               <li className="mb-4">Explore different categories and topics, Join a community where secrets are shared and understood</li>
             </ul>
-            <button className="hover:bg-green hover:text-cream py-2 mt-6 text-green px-8 font-mono text-lg border-2 border-green">
+            <Link href="/login" className="hover:bg-green hover:text-cream py-2 mt-10 text-green px-8 font-mono text-lg border-2 border-green">
               Get Started
-            </button>
+            </Link>
           </div>
           <img src="/faceoff.png" alt="face Off" className="w-44 h-44 sm:w-96 sm:h-96" />
         </div>
