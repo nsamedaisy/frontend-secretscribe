@@ -11,7 +11,7 @@ const Login = () => {
           <button>Cancel</button>
           <Link
             className="text-lg font-bold text-cream hover:underline"
-            href="/"
+            href="/register"
           >
             Sign Up
           </Link>
@@ -24,13 +24,13 @@ const Login = () => {
 
         <h1 className="py-6 text-5xl font-marker items-center justify-center flex font-bold">Welcome back</h1>
 
-        <section className="flex flex-col space-y-6 bg-orange-600 w-[60%] ml-[20%] mt-8">
-          <button className="flex items-center"><img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" /> Sign In with Google</button>
-          <button className="flex items-center"><FaApple className="w-6 h-6 mr-3" /> Sign In with Apple</button>
-          <button className="flex items-center"><FaEnvelope className="w-5 h-5 mr-3" /> Sign In with Mail</button>
-          <button className="flex items-center"><FaFacebookF className="w-5 h-5 mr-3" /> Sign In with Facebook</button>
+        <section className="flex flex-col space-y-6 w-[60%] ml-[20%] mt-8 text-white font-extrabold font-lobster mb-5">
+          <button className="flex items-center border-2 border-green py-2 pl-4"><img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" /> Sign In with Google</button>
+          <button className="flex items-center border-2 border-green py-2 pl-4"><FaApple className="w-6 h-6 mr-3 text-blue-700" /> Sign In with Apple</button>
+          <button className="flex items-center border-2 border-green py-2 pl-4"><FaEnvelope className="w-5 h-5 mr-3 text-red-700" /> Sign In with Mail</button>
+          <button className="flex items-center border-2 border-green py-2 pl-4"><FaFacebookF className="w-5 h-5 mr-3 text-yellow-700" /> Sign In with Facebook</button>
         </section>
-
+        <p className="mb-10 items-center text-sm justify-center flex font-serif">Educators: Register as an individual</p>
       </div>
     </div>
   );
