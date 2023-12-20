@@ -71,7 +71,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="text-center py-14 border-b">
+      <section className="text-center py-14 border-b overflow-x-hidden">
         <p className="text-4xl font-marker text-white font-extrabold mb-4 animate-slide-in-right">
           Type your message anonymously, Choose a category for your message,
           Submit your message and let others discover it.
