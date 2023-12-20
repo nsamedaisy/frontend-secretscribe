@@ -1,17 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
-// import { FiMenu } from 'react-icons/fi';
 import { FaApple, FaEnvelope, FaFacebookF,  } from "react-icons/fa";
 
 const Login = () => {
   return (
-    <div className="bg-cream min-h-screen flex items-center justify-center">
-      <div className="w-[25%] h-[45%] bg-green py-10 shadow-2xl px-9">
+    <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
+      <div className="w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
           <button>Cancel</button>
           <Link
-            className="text-lg font-medium text-cream hover:text-white hover:underline"
+            className="text-lg font-bold text-cream hover:underline"
             href="/"
           >
             Sign Up
@@ -19,8 +18,8 @@ const Login = () => {
         </header>
 
         <div className="flex items-center justify-center leading-tight">
-        <img src="/sslogo.png" alt="SecretScribe Logo" className="hidden md:block w-10 h-10 lg:block" />
-            <h1 className="hidden sm:block text-3xl font-thin font-marker">ecretScribe</h1>
+        <img src="/sslogo.png" alt="SecretScribe Logo" className="bg-black w-10 h-10" />
+            <h1 className="text-3xl font-thin font-marker">ecretScribe</h1>
         </div>
 
         <h1 className="py-6 text-5xl font-marker items-center justify-center flex font-bold">Welcome back</h1>
@@ -38,3 +37,4 @@ const Login = () => {
 };
 
 export default Login;
+// style={{background: 'url("/stars.png")'}}
