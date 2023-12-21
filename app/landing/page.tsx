@@ -19,7 +19,7 @@ const LandingPage = () => {
 
       <header className="px-4 py-4 flex justify-between items-center sm:px-8 md:px-16 lg:px-60 shadow-[rgba(0,0,0,0.5)_7px_5px_3px_0px] fixed w-full bg-green z-40">
           <div className="flex items-center">
-            <img src="/sslogo.png" alt="SecretScribe Logo" className="hidden md:block w-16 h-16 lg:block" />
+            <img src="/sslogo.png" alt="SecretScribe Logo" className="hidden md:block w-16 h-16 lg:block bg-gray-800" />
             <h1 className="hidden sm:block text-5xl font-extrabold font-marker">ecretScribe</h1>
           </div>
           <nav className="font-mono hidden sm:block">
