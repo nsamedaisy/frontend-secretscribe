@@ -4,6 +4,16 @@ import Link from "next/link";
 import { MdSend } from "react-icons/md";
 
 const writeSecretMessage = () => {
+  const [content, setContent] = useState('');
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
+
+
+
+
+  
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-t from-cream to-green">
@@ -22,6 +32,8 @@ const writeSecretMessage = () => {
             <textarea
               className="w-full h-40 px-3 py-2 bg-transparent text-white resize-none focus:outline-none"
               placeholder="Write your secret message..."
+              value={textareaValue}
+              onChange={handleTextareaChange}
             ></textarea>
           </fieldset>
         </div>
