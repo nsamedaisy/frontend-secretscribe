@@ -1,9 +1,29 @@
 import React from "react";
 import Link from "next/link";
+import axios from 'axios';
+
 
 import { FaArrowLeft } from "react-icons/fa";
 
 const viewSecretMessage = () => {
+ const [Messages, setMessages] = useState([]);
+
+ useEffect(() => {
+  const fetchMessages = async () => {
+    try {
+      const response = await axios.get('/api/messages');
+      const { messages } = response.data;
+      setMessages(messages);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  fetchMessages();
+}, []);
+
+
+
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
@@ -15,12 +35,13 @@ const viewSecretMessage = () => {
         </p>
 
         {/* Recieve secret message */}
-        <div className="w-[20vw]">
+        <div className="w-[20vw]">  
           <fieldset className="border-2 border-cream rounded p-4">
             <legend className="text-sm font-semibold">Messages:</legend>
             <div className="flex  flex-col mt-2">
-              <p className="text-base">I know so well what you can do thats why i cant tell you this to your face</p>
-              <p className="text-sm mt-4">_anonymous Time sent</p>
+            {messages.map((message) => (
+        <div key={message._id}>{message.content}</div>
+      ))}              <p className="text-sm mt-4">_anonymous Time sent</p>
               <button className="border rounded-xl mt-3 py-1">
               ✨ Share response ✨
               </button>

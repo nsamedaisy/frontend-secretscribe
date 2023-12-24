@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import axios from 'axios';
 
 import { MdSend } from "react-icons/md";
 
@@ -10,7 +11,25 @@ const writeSecretMessage = () => {
     setContent(e.target.value);
   };
 
+  const sendMessage = async () => {
+    try {
+      const response = await axios.post('/api/messages', { content });
+      const { message } = response.data;
+      // Do something with the retrieved message
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
+  const sendMessage = async () => {
+    try {
+      const response = await axios.post('/api/messages', { content });
+      const { message } = response.data;
+      // Do something with the retrieved message
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
 
   
@@ -32,8 +51,8 @@ const writeSecretMessage = () => {
             <textarea
               className="w-full h-40 px-3 py-2 bg-transparent text-white resize-none focus:outline-none"
               placeholder="Write your secret message..."
-              value={textareaValue}
-              onChange={handleTextareaChange}
+              value={content}
+              onChange={handleContentChange}
             ></textarea>
           </fieldset>
         </div>
@@ -41,13 +60,14 @@ const writeSecretMessage = () => {
         <p className="mt-6 font-mono text-sm">254 characters remaining</p>
         <hr className="mt-2 border-b-2 w-[20vw]" />
 
-        <Link
+        <button
           href="/profile"
           className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+          onClick={sendMessage}   
         >
           Send Message
           <MdSend className="ml-3" />
-        </Link>
+        </button>
 
         <p className="text-green">
           Say what do you think about daisyb3ll3 or Leave a feedback for
