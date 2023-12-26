@@ -4,6 +4,13 @@ import Link from "next/link";
 import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
 
 const Register = () => {
+	const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+      
+
+
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
@@ -27,16 +34,29 @@ const Register = () => {
         </div>
 
         <section className="flex  flex-col ml-[15%] w-[70%] bg-green">
+          <form onSubmit={handleSubmit}>
+        <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+            className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
+          />
           <input
             placeholder="Email"
             type="email"
             className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
-          />
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+				 />
           <input
             placeholder="Password"
             type="password"
             className="px-3 border-2 border-cream py-3 bg-transparent text-white border-t-0 focus:outline-none"
-          />
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+          </form>
         </section>
 
         <section className="flex flex-col space-y-6 w-[70%] ml-[15%] mt-3 text-white font-extrabold font-lobster mb-5">
