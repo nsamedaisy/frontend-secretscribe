@@ -1,29 +1,20 @@
-import React from "react";
+"use client"
 import Link from "next/link";
 import axios from 'axios';
+import { useState } from "react";
 
 import { MdSend } from "react-icons/md";
 
 const writeSecretMessage = () => {
   const [content, setContent] = useState('');
 
-  const handleContentChange = (e) => {
+  const handleContentChange = (e: any) => {
     setContent(e.target.value);
   };
 
   const sendMessage = async () => {
     try {
-      const response = await axios.post('/api/messages', { content });
-      const { message } = response.data;
-      // Do something with the retrieved message
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  const sendMessage = async () => {
-    try {
-      const response = await axios.post('/api/messages', { content });
+      const response = await axios.post(API_ULR + '/api/messages', { content });
       const { message } = response.data;
       // Do something with the retrieved message
     } catch (error) {
@@ -32,7 +23,7 @@ const writeSecretMessage = () => {
   };
 
 
-  
+
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-t from-cream to-green">
@@ -63,7 +54,7 @@ const writeSecretMessage = () => {
         <button
           href="/profile"
           className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
-          onClick={sendMessage}   
+          onClick={sendMessage}
         >
           Send Message
           <MdSend className="ml-3" />
@@ -73,17 +64,17 @@ const writeSecretMessage = () => {
           Say what do you think about daisyb3ll3 or Leave a feedback for
           daisyb3ll3 anonymously using the form above.. 🥰 Thank You!! 😍😊
         </p>
-{/* after confirmation the user should be chance to create their own link  */}
+        {/* after confirmation the user should be chance to create their own link  */}
         <div className="hidden">
           <p>
-          Click here 👇🏿 to create your own secret message link!
+            Click here 👇🏿 to create your own secret message link!
           </p>
           <Link
-          href="/login"
-          className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
-        >
-         🔏 Create Link
-        </Link>
+            href="/login"
+            className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+          >
+            🔏 Create Link
+          </Link>
         </div>
 
       </div>

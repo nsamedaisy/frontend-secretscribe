@@ -1,14 +1,32 @@
+   "use client"
 import React from "react";
 import Link from "next/link";
-
 import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
+import { useState } from "react";
+import axios from "axios";
+
 
 const Register = () => {
 	const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-      
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("/auth/signup", {
+        username,
+        email,
+        password,
+      });
+      console.log(response.data);
+      // Handle successful sign-up, e.g., show success message or redirect to login page
+    } catch (error) {
+      console.error(error);
+      // Handle sign-up error, e.g., show error message
+    }
+  };    
 
 
   return (
@@ -33,8 +51,7 @@ const Register = () => {
           <h1 className="text-3xl my-4 font-thin font-marker">ecretScribe</h1>
         </div>
 
-        <section className="flex  flex-col ml-[15%] w-[70%] bg-green">
-          <form onSubmit={handleSubmit}>
+       <form onSubmit={handleSubmit} className="flex  flex-col ml-[15%] w-[70%] bg-green">
         <input
         type="text"
         placeholder="Username"
@@ -56,8 +73,8 @@ const Register = () => {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-          </form>
-        </section>
+          
+        </form>
 
         <section className="flex flex-col space-y-6 w-[70%] ml-[15%] mt-3 text-white font-extrabold font-lobster mb-5">
           <button className="flex items-center justify-center border-2 border-green py-2">

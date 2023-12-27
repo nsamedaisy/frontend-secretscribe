@@ -1,12 +1,14 @@
+ "use client"  
 import React from "react";
 import Link from "next/link";
 import axios from 'axios';
+import { useState, useEffect } from "react";
 
 
 import { FaArrowLeft } from "react-icons/fa";
 
 const viewSecretMessage = () => {
- const [Messages, setMessages] = useState([]);
+ const [messages, setMessages] = useState([]);
 
  useEffect(() => {
   const fetchMessages = async () => {
@@ -52,7 +54,7 @@ const viewSecretMessage = () => {
           <fieldset className="border-2 border-cream text-green font-bold rounded p-3 mt-3">
             <p>
               You Have Reached The End! 🏁 🙋 Ask your friends to send more
-              messages or view Archived Messaged
+              messages or view Archived Messages
             </p>
           </fieldset>
 

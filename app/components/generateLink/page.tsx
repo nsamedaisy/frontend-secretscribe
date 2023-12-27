@@ -20,7 +20,7 @@ const GenerateLink = () => {
       };
 
     const generateLink = async () => {
-        try {
+        try { 
           const response = await axios.post('/api/buckets', { title });
           const { link } = response.data;
           // Do something with the generated link
