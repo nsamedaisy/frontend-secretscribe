@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState } from "react";
 
 import { MdSend } from "react-icons/md";
+import { API_URL } from "../components/constant";
 
 const writeSecretMessage = () => {
   const [content, setContent] = useState('');
@@ -14,7 +15,7 @@ const writeSecretMessage = () => {
 
   const sendMessage = async () => {
     try {
-      const response = await axios.post(API_ULR + '/api/messages', { content });
+      const response = await axios.post(API_URL + '/message', { content });
       const { message } = response.data;
       // Do something with the retrieved message
     } catch (error) {

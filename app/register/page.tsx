@@ -1,39 +1,41 @@
-   "use client"
+"use client"
 import React from "react";
 import Link from "next/link";
 import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
+import { API_URL } from "../components/constant";
 
 
 const Register = () => {
-	const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/auth/signup", {
+      const response = await axios.post(API_URL + "/auth/signup", {
         username,
         email,
         password,
       });
       console.log(response.data);
+
       // Handle successful sign-up, e.g., show success message or redirect to login page
     } catch (error) {
       console.error(error);
       // Handle sign-up error, e.g., show error message
     }
-  };    
+  };
 
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
-          <button className="text-xl"><FaTimes  /></button>
+          <button className="text-xl"><FaTimes /></button>
           <Link
             className="text-lg font-bold text-cream hover:underline"
             href="/login"
@@ -51,29 +53,29 @@ const Register = () => {
           <h1 className="text-3xl my-4 font-thin font-marker">ecretScribe</h1>
         </div>
 
-       <form onSubmit={handleSubmit} className="flex  flex-col ml-[15%] w-[70%] bg-green">
-        <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        <form onSubmit={handleSubmit} className="flex  flex-col ml-[15%] w-[70%] bg-green">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
           />
           <input
             placeholder="Email"
             type="email"
             className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-				 />
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <input
             placeholder="Password"
             type="password"
             className="px-3 border-2 border-cream py-3 bg-transparent text-white border-t-0 focus:outline-none"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-          
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">signup</button>
         </form>
 
         <section className="flex flex-col space-y-6 w-[70%] ml-[15%] mt-3 text-white font-extrabold font-lobster mb-5">
