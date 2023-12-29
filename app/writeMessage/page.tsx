@@ -1,29 +1,6 @@
-"use client"
 import Link from "next/link";
-import axios from 'axios';
-import { useState } from "react";
 
-import { MdSend } from "react-icons/md";
-import { API_URL } from "../components/constant";
-
-const writeSecretMessage = () => {
-  const [content, setContent] = useState('');
-
-  const handleContentChange = (e: any) => {
-    setContent(e.target.value);
-  };
-
-  const sendMessage = async () => {
-    try {
-      const response = await axios.post(API_URL + '/message', { content });
-      const { message } = response.data;
-      // Do something with the retrieved message
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-
+const page = () => {
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
@@ -36,51 +13,10 @@ const writeSecretMessage = () => {
           😅 Say Something...
         </h1>
 
-        {/* Write secret message */}
-        <div className="">
-          <p className="text-sm">What is that you always want to tell me <span className="text-red-700">*</span></p>
-          <fieldset className="border-none">
-            <textarea
-              className="w-full h-40 px-3 py-2 bg-transparent text-white resize-none focus:outline-none"
-              placeholder="Write your secret message..."
-              value={content}
-              onChange={handleContentChange}
-            ></textarea>
-          </fieldset>
-        </div>
-
-        <p className="mt-6 font-mono text-sm">254 characters remaining</p>
-        <hr className="mt-2 border-b-2 w-[20vw]" />
-
-        <button
-          href="/profile"
-          className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
-          onClick={sendMessage}
-        >
-          Send Message
-          <MdSend className="ml-3" />
-        </button>
-
-        <p className="text-green">
-          Say what do you think about daisyb3ll3 or Leave a feedback for
-          daisyb3ll3 anonymously using the form above.. 🥰 Thank You!! 😍😊
-        </p>
-        {/* after confirmation the user should be chance to create their own link  */}
-        <div className="hidden">
-          <p>
-            Click here 👇🏿 to create your own secret message link!
-          </p>
-          <Link
-            href="/login"
-            className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
-          >
-            🔏 Create Link
-          </Link>
-        </div>
-
+        <Link href='/'> Home</Link>
       </div>
     </div>
   );
 };
 
-export default writeSecretMessage;
+export default page;

@@ -1,28 +1,27 @@
- "use client"  
-import React from "react";
+"use client"
+
 import Link from "next/link";
 import axios from 'axios';
 import { useState, useEffect } from "react";
-
-
 import { FaArrowLeft } from "react-icons/fa";
+import { API_URL } from "../_components/constant";
 
 const viewSecretMessage = () => {
- const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<any[]>([]);
 
- useEffect(() => {
-  const fetchMessages = async () => {
-    try {
-      const response = await axios.get('/api/messages');
-      const { messages } = response.data;
-      setMessages(messages);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get(API_URL + '/message');
+        const { messages } = response.data;
+        setMessages(messages);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  fetchMessages();
-}, []);
+    fetchMessages();
+  }, []);
 
 
 
@@ -37,15 +36,18 @@ const viewSecretMessage = () => {
         </p>
 
         {/* Recieve secret message */}
-        <div className="w-[20vw]">  
+        <div className="w-[20vw]">
           <fieldset className="border-2 border-cream rounded p-4">
             <legend className="text-sm font-semibold">Messages:</legend>
             <div className="flex  flex-col mt-2">
-            {messages.map((message) => (
-        <div key={message._id}>{message.content}</div>
-      ))}              <p className="text-sm mt-4">_anonymous Time sent</p>
+              <ul>
+                {messages?.map((message) => (
+                  <li key={message._id}>{message.content}</li>
+                ))}
+              </ul>
+              <p className="text-sm mt-4">_anonymous Time sent</p>
               <button className="border rounded-xl mt-3 py-1">
-              ✨ Share response ✨
+                ✨ Share response ✨
               </button>
             </div>
             {/* Place your received messages and time sent here */}

@@ -4,9 +4,9 @@ import Link from "next/link";
 
 import { FaApple, FaEnvelope, FaFacebookF, FaTimes } from "react-icons/fa";
 import axios from "axios";
+import { API_URL } from "../_components/constant";
 
 const Login = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,9 +14,9 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/auth/login", {
+      const response = await axios.post(API_URL + "/auth/login", {
         email,
-        password,
+        password
       });
       console.log(response.data);
       // Handle successful login, e.g., store token or redirect to authenticated page

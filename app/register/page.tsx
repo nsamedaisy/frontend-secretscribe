@@ -4,11 +4,11 @@ import Link from "next/link";
 import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import { API_URL } from "../components/constant";
+import { API_URL } from "../_components/constant";
 
 
 const Register = () => {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,7 +17,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(API_URL + "/auth/signup", {
-        username,
+        name,
         email,
         password,
       });
@@ -56,9 +56,9 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="flex  flex-col ml-[15%] w-[70%] bg-green">
           <input
             type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
           />
           <input
