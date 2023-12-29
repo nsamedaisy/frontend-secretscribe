@@ -4,30 +4,62 @@ import Link from "next/link";
 import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import { API_URL } from "../_components/constant";
+import { API_URL, FRONT_END_URL } from "../_components/constant";
+import { useRouter } from 'next/navigation'
 
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  let userId = "";
+  let token = "";
+
+  const router = useRouter()
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setIsLoading(true)
 
-    try {
-      const response = await axios.post(API_URL + "/auth/signup", {
-        name,
-        email,
-        password,
-      });
-      console.log(response.data);
+    axios.post(API_URL + "/auth/signup", {
+      name,
+      email,
+      password,
+    })
+      // console.log(response.data);
+      .then((resp) => {
+        token = resp.data.token;
+        localStorage.setItem("token", token);
+        console.log("this is the response", resp.data.token);
+      })
 
-      // Handle successful sign-up, e.g., show success message or redirect to login page
-    } catch (error) {
-      console.error(error);
-      // Handle sign-up error, e.g., show error message
-    }
+      .catch((err) => {
+        console.error("An error occure on frontend", err);
+        // Handle sign-up error, e.g., show error message
+        console.log({ username: name, email: email, password: password });
+      })
+
+    setTimeout(() => {
+      axios
+        .post(FRONT_END_URL, {
+          name,
+          email,
+          password,
+        })
+        .then((res) => {
+          localStorage.setItem("currentUser", JSON.stringify(res.data));
+          router.push(`/profile/${res.data.id}`);
+          userId = res.data.id;
+          console.log(userId);
+          console.log("here is the current user", res);
+        })
+        .catch((err) => console.log("Could not get current user", err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 3000);
   };
 
 
@@ -64,7 +96,7 @@ const Register = () => {
           <input
             placeholder="Email"
             type="email"
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
+            className="px-3 border-2 border-cream py-3 bg-transparent text-white border-t-0 focus:outline-none"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -75,14 +107,14 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">signup</button>
-        </form>
 
-        <section className="flex flex-col space-y-6 w-[70%] ml-[15%] mt-3 text-white font-extrabold font-lobster mb-5">
-          <button className="flex items-center justify-center border-2 border-green py-2">
+          <button disabled={isLoading} title={isLoading ? "signing up..." : "sign up"} type="submit" className="flex items-center justify-center border-2 border-green py-2 text-white">
             <FaLockOpen className="w-5 h-5 mr-3 text-red-700" /> Sign Up
           </button>
+        </form>
 
+
+        <section className="flex flex-col space-y-6 w-[70%] ml-[15%] mt-3 text-white font-extrabold font-lobster mb-5">
           <p className="flex justify-center items-center py-2">
             <span className="border-b flex-grow"></span>
             <span className="px-3 text-gray-500 font-bold">Or</span>

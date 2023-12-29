@@ -5,25 +5,51 @@ import Link from "next/link";
 import { FaApple, FaEnvelope, FaFacebookF, FaTimes } from "react-icons/fa";
 import axios from "axios";
 import { API_URL } from "../_components/constant";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  let userId = ""
+  let mes = "";
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(API_URL + "/auth/login", {
-        email,
-        password
-      });
-      console.log(response.data);
-      // Handle successful login, e.g., store token or redirect to authenticated page
-    } catch (error) {
-      console.error(error);
-      // Handle login error, e.g., show error message
-    }
+    axios.post(API_URL + "/auth/login", {
+      email,
+      password
+    })
+      // console.log(response.data);
+      .then((resp) => {
+        console.log("this is the response", resp);
+        localStorage.setItem("token", resp.data.token);
+        mes = resp.data.message;
+        setMessage(resp.data.message);
+      })
+      .catch((err) => {
+        console.error("An error occured on the frontend", err);
+        // Handle login error, e.g., show error message
+      })
+
+    setTimeout(() => {
+      console.log("this is the message", mes);
+      axios
+        .post(API_URL + "currentUser", {
+          email,
+        })
+        .then((res) => {
+          localStorage.setItem("currentUser", JSON.stringify(res.data));
+          userId = res.data.id;
+          router.push(`/create-bucket/${userId}`);
+          console.log("here is the current user", res);
+        })
+        .catch((err) => console.log("Could not get current user", err))
+
+    }, 2000);
   };
 
 
