@@ -1,14 +1,73 @@
+"use client"
 import React from "react";
 import Link from "next/link";
-
 import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
+import { useState } from "react";
+import axios from "axios";
+import { API_URL, FRONT_END_URL } from "../_components/constant";
+import { useRouter } from 'next/navigation'
+
 
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  let userId = "";
+  let token = "";
+
+  const router = useRouter()
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setIsLoading(true)
+
+    axios.post(API_URL + "/auth/signup", {
+      name,
+      email,
+      password,
+    })
+      // console.log(response.data);
+      .then((resp) => {
+        token = resp.data.token;
+        localStorage.setItem("token", token);
+        console.log("this is the response", resp.data.token);
+      })
+
+      // Handle sign-up error, e.g., show error message
+      .catch((err) => {
+        console.error("An error occure on frontend", err);
+        console.log({ username: name, email: email, password: password });
+      })
+
+    setTimeout(() => {
+      axios
+        .post(FRONT_END_URL, {
+          name,
+          email,
+          password,
+        })
+        .then((res) => {
+          localStorage.setItem("User", JSON.stringify(res.data));
+          router.push(`/profile/${res.data.id}`);
+          userId = res.data.id;
+          // console.log(userId);
+          console.log("here is the current user", res);
+        })
+        .catch((err) => console.log("Could not get current user", err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 3000);
+  };
+
+
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
-          <button className="text-xl"><FaTimes  /></button>
+          <button className="text-xl"><FaTimes /></button>
           <Link
             className="text-lg font-bold text-cream hover:underline"
             href="/login"
@@ -26,24 +85,36 @@ const Register = () => {
           <h1 className="text-3xl my-4 font-thin font-marker">ecretScribe</h1>
         </div>
 
-        <section className="flex  flex-col ml-[15%] w-[70%] bg-green">
+        <form onSubmit={handleSubmit} className="flex  flex-col ml-[15%] w-[70%] bg-green">
+          <input
+            type="text"
+            placeholder="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
+          />
           <input
             placeholder="Email"
             type="email"
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
+            className="px-3 border-2 border-cream py-3 bg-transparent text-white border-t-0 focus:outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             placeholder="Password"
             type="password"
             className="px-3 border-2 border-cream py-3 bg-transparent text-white border-t-0 focus:outline-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-        </section>
 
-        <section className="flex flex-col space-y-6 w-[70%] ml-[15%] mt-3 text-white font-extrabold font-lobster mb-5">
-          <button className="flex items-center justify-center border-2 border-green py-2">
+          <button disabled={isLoading} title={isLoading ? "signing up..." : "sign up"} type="submit" className="flex items-center justify-center border-2 border-green py-2 text-white">
             <FaLockOpen className="w-5 h-5 mr-3 text-red-700" /> Sign Up
           </button>
+        </form>
 
+
+        <section className="flex flex-col space-y-6 w-[70%] ml-[15%] mt-3 text-white font-extrabold font-lobster mb-5">
           <p className="flex justify-center items-center py-2">
             <span className="border-b flex-grow"></span>
             <span className="px-3 text-gray-500 font-bold">Or</span>

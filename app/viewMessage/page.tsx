@@ -1,9 +1,30 @@
-import React from "react";
-import Link from "next/link";
+"use client"
 
+import Link from "next/link";
+import axios from 'axios';
+import { useState, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
+import { API_URL } from "../_components/constant";
 
 const viewSecretMessage = () => {
+  const [messages, setMessages] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get(API_URL + '/message');
+        const { messages } = response.data;
+        setMessages(messages);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchMessages();
+  }, []);
+
+
+
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
@@ -19,10 +40,14 @@ const viewSecretMessage = () => {
           <fieldset className="border-2 border-cream rounded p-4">
             <legend className="text-sm font-semibold">Messages:</legend>
             <div className="flex  flex-col mt-2">
-              <p className="text-base">I know so well what you can do thats why i cant tell you this to your face</p>
+              <ul>
+                {messages?.map((message) => (
+                  <li key={message._id}>{message.content}</li>
+                ))}
+              </ul>
               <p className="text-sm mt-4">_anonymous Time sent</p>
               <button className="border rounded-xl mt-3 py-1">
-              ✨ Share response ✨
+                ✨ Share response ✨
               </button>
             </div>
             {/* Place your received messages and time sent here */}
@@ -31,7 +56,7 @@ const viewSecretMessage = () => {
           <fieldset className="border-2 border-cream text-green font-bold rounded p-3 mt-3">
             <p>
               You Have Reached The End! 🏁 🙋 Ask your friends to send more
-              messages or view Archived Messaged
+              messages or view Archived Messages
             </p>
           </fieldset>
 
