@@ -35,9 +35,9 @@ const Register = () => {
         console.log("this is the response", resp.data.token);
       })
 
+      // Handle sign-up error, e.g., show error message
       .catch((err) => {
         console.error("An error occure on frontend", err);
-        // Handle sign-up error, e.g., show error message
         console.log({ username: name, email: email, password: password });
       })
 
@@ -49,10 +49,10 @@ const Register = () => {
           password,
         })
         .then((res) => {
-          localStorage.setItem("currentUser", JSON.stringify(res.data));
+          localStorage.setItem("User", JSON.stringify(res.data));
           router.push(`/profile/${res.data.id}`);
           userId = res.data.id;
-          console.log(userId);
+          // console.log(userId);
           console.log("here is the current user", res);
         })
         .catch((err) => console.log("Could not get current user", err))

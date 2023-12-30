@@ -42,7 +42,7 @@ const Login = () => {
           email,
         })
         .then((res) => {
-          localStorage.setItem("currentUser", JSON.stringify(res.data));
+          localStorage.setItem("User", JSON.stringify(res.data));
           userId = res.data.id;
           router.push(`/create-bucket/${userId}`);
           console.log("here is the current user", res);
@@ -88,8 +88,15 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
           />
-          <button type="submit">Login</button>
+          <button className="border border-black py-3" type="submit">Login</button>
         </form>
+
+        <p className="flex justify-center items-center py-2">
+          <span className="border-b flex-grow"></span>
+          <span className="px-3 text-gray-500 font-bold">Or</span>
+          <span className="border-b flex-grow"></span>
+        </p>
+
 
         <section className="flex flex-col space-y-6 w-[60%] ml-[20%] mt-8 text-white font-extrabold font-lobster mb-5">
           <button className="flex items-center border-2 border-green py-2 pl-4"><img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" /> Sign In with Google</button>

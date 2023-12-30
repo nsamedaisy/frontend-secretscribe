@@ -26,6 +26,7 @@ export default function page() {
         } catch (error) {
             console.error('Error:', error);
         }
+        setContent('')
     };
 
 
