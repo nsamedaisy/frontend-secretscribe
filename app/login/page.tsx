@@ -16,8 +16,8 @@ const Login = () => {
   let mes = "";
   const router = useRouter();
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     axios.post(API_URL + "/auth/login", {
       email,

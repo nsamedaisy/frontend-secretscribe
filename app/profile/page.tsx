@@ -1,5 +1,6 @@
-import React from "react";
+"use client"
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import {
   FaArrowRight,
@@ -11,11 +12,15 @@ import {
 import { FiSettings } from "react-icons/fi";
 
 const userProfile = () => {
+  const router = useRouter();
+  const { name } = router.query
+
+
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
         <h1 className="text-5xl font-extrabold font-sans items-center">
-          Daisy's Profile
+          {name}'s Profile
         </h1>
         <Link href="" className="flex items-center py-6 font-bold">
           share this link and get your response <FaRegCopy className="ml-3" />

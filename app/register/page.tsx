@@ -51,6 +51,8 @@ const Register = () => {
         .then((res) => {
           localStorage.setItem("User", JSON.stringify(res.data));
           router.push(`/profile/${res.data.id}`);
+          console.log("this is res", res);
+
           userId = res.data.id;
           // console.log(userId);
           console.log("here is the current user", res);
