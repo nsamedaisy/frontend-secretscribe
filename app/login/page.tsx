@@ -6,50 +6,37 @@ import { FaApple, FaEnvelope, FaFacebookF, FaTimes } from "react-icons/fa";
 import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from "next/navigation";
+import { ApiRes } from "../_services/utils";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
 
   let userId = ""
   let mes = "";
   const router = useRouter();
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const loginUser = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     axios.post(API_URL + "/auth/login", {
       email,
       password
     })
-      // console.log(response.data);
-      .then((resp) => {
+      .then((resp: ApiRes) => {
         console.log("this is the response", resp);
         localStorage.setItem("token", resp.data.token);
-        mes = resp.data.message;
-        setMessage(resp.data.message);
+        router.push(`/create-bucket`);
+        // mes = resp.data.message;
+        // setMessage(resp.data.message);
       })
       .catch((err) => {
         console.error("An error occured on the frontend", err);
         // Handle login error, e.g., show error message
-      })
-
-    setTimeout(() => {
-      console.log("this is the message", mes);
-      axios
-        .post(API_URL + "currentUser", {
-          email,
-        })
-        .then((res) => {
-          localStorage.setItem("User", JSON.stringify(res.data));
-          userId = res.data.id;
-          router.push(`/create-bucket/${userId}`);
-          console.log("here is the current user", res);
-        })
-        .catch((err) => console.log("Could not get current user", err))
-
-    }, 2000);
+      });
   };
 
 
@@ -73,16 +60,18 @@ const Login = () => {
 
         <h1 className="py-6 text-5xl font-marker items-center justify-center flex font-bold">Welcome back</h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-6 w-[60%] ml-[20%] mt-8 text-white font-extrabold font-lobster mb-5">
+        <form onSubmit={loginUser} className="flex flex-col space-y-6 w-[60%] ml-[20%] mt-8 text-white font-extrabold font-lobster mb-5">
           <input
-            type="email"
+            type="email" required
+            autoComplete="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
           />
           <input
-            type="password"
+            type="password" required
+            autoComplete="current-password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
