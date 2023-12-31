@@ -32,12 +32,6 @@ const Register = () => {
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
-      {isLoading && (
-        <div>
-          <Loader />
-        </div>
-      )}
-
       <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
           <button className="text-xl">
@@ -60,28 +54,31 @@ const Register = () => {
           <h1 className="text-3xl my-4 font-thin font-marker">SecretScribe</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col ml-[15%] w-[70%] bg-green">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col ml-[15%] w-[70%]"
+        >
           <input
             placeholder="Email"
             type="email"
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
+            className="px-3 border-2 border-cream  bg-green py-3 text-white focus:outline-none"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             placeholder="Password"
             type="password"
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white border-t-0 focus:outline-none"
+            className="px-3 border-2 border-cream py-3 bg-green text-white border-t-0 focus:outline-none "
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
             type="submit"
-            className="flex items-center justify-center border-2 border-green py-2"
+            className="flex items-center justify-center mt-4 border-2 border-green py-2"
             disabled={isLoading}
           >
             {isLoading ? (
-              "Loading..."
+              <Loader />
             ) : (
               <>
                 <FaLockOpen className="w-5 h-5 mr-3 text-red-700" />
@@ -103,7 +100,8 @@ const Register = () => {
             Sign In with Google
           </button>
           <button className="flex items-center border-2 border-green py-2 pl-4">
-            <FaApple className="w-6 h-6 mr-3 text-blue-700" /> Sign In with Apple
+            <FaApple className="w-6 h-6 mr-3 text-blue-700" /> Sign In with
+            Apple
           </button>
         </section>
 
