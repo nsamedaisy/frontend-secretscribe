@@ -4,8 +4,9 @@ import Link from "next/link";
 import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import { API_URL, FRONT_END_URL } from "../_components/constant";
+import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
+import { ApiRes } from "../_services/utils";
 
 
 const Register = () => {
@@ -14,10 +15,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  let userId = "";
-  let token = "";
-
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -29,10 +27,11 @@ const Register = () => {
       password,
     })
       // console.log(response.data);
-      .then((resp) => {
-        token = resp.data.token;
+      .then((resp: ApiRes) => {
+        const token = resp.data.token;
+
         localStorage.setItem("token", token);
-        console.log("this is the response", resp.data.token);
+        router.push('/profile');
       })
 
       // Handle sign-up error, e.g., show error message
@@ -40,28 +39,6 @@ const Register = () => {
         console.error("An error occure on frontend", err);
         console.log({ username: name, email: email, password: password });
       })
-
-    setTimeout(() => {
-      axios
-        .post(FRONT_END_URL, {
-          name,
-          email,
-          password,
-        })
-        .then((res) => {
-          localStorage.setItem("User", JSON.stringify(res.data));
-          router.push(`/profile/${res.data.id}`);
-          console.log("this is res", res);
-
-          userId = res.data.id;
-          // console.log(userId);
-          console.log("here is the current user", res);
-        })
-        .catch((err) => console.log("Could not get current user", err))
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }, 3000);
   };
 
 

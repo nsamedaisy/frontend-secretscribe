@@ -3,9 +3,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { API_URL, FRONT_END_URL } from '../_components/constant';
 import { HiOutlineExternalLink } from "react-icons/hi";
+import { CurrentUserGuard } from '../_services/ui';
+import { IUser } from '../_services/utils';
 
+interface Props {
+  currentUser: IUser;
+}
 
-const GenerateLink = () => {
+const GenerateLink = ({ currentUser }: Props) => {
   const [title, setTitle] = useState('');
   const [topicLink, setTopicLink] = useState<string>('');
 
@@ -30,8 +35,8 @@ const GenerateLink = () => {
 
   const createBucket = async () => {
     const creator = {
-      name: '',
-      email: '',
+      name: currentUser.name,
+      email: currentUser.email,
       password: '',
     }
 
@@ -72,4 +77,4 @@ const GenerateLink = () => {
   )
 }
 
-export default GenerateLink   
+export default CurrentUserGuard(GenerateLink);

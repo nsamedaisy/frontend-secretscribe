@@ -1,14 +1,16 @@
 "use client"
 import Link from "next/link";
 import axios from 'axios';
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { MdSend } from "react-icons/md";
 import { API_URL } from "../../_components/constant";
 import { useParams } from "next/navigation";
+import { IBucket } from "@/app/_services/utils";
 
 export default function page() {
     const [content, setContent] = useState('');
+    const [bucket, setBucket] = useState<IBucket | null>(null);
     const params = useParams<{ bucket_id: string }>();
 
     const handleContentChange = (e: any) => {
@@ -30,6 +32,21 @@ export default function page() {
     };
 
 
+    useEffect(() => {
+        const fetchBucket = async () => {
+            try {
+                const { data } = await axios.get<IBucket>(API_URL + '/bucket/' + params.bucket_id);
+                console.log(data)
+                setBucket(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchBucket();
+    }, []);
+
+
 
     return (
         <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
@@ -40,6 +57,7 @@ export default function page() {
 
                 <h1 className="text-4xl font-extrabold font-sans items-center mb-10">
                     😅 Say Something...
+                    {bucket ? `about ${bucket.title}` : ''}
                 </h1>
 
                 {/* Write secret message */}

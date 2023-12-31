@@ -1,6 +1,5 @@
 "use client"
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 import {
   FaArrowRight,
@@ -10,17 +9,20 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
+import { CurrentUserGuard } from "../_services/ui";
+import { IUser } from "../_services/utils";
 
-const userProfile = () => {
-  const router = useRouter();
-  const { name } = router.query
+interface Props {
+  currentUser: IUser;
+}
 
+const userProfile = ({ currentUser }: Props) => {
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
         <h1 className="text-5xl font-extrabold font-sans items-center">
-          {name}'s Profile
+          {currentUser?.name}'s Profile
         </h1>
         <Link href="" className="flex items-center py-6 font-bold">
           share this link and get your response <FaRegCopy className="ml-3" />
@@ -62,4 +64,4 @@ const userProfile = () => {
   );
 };
 
-export default userProfile;
+export default CurrentUserGuard(userProfile);
