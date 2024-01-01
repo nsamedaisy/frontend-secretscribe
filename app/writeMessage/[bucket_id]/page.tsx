@@ -11,6 +11,7 @@ import { IBucket } from "@/app/_services/utils";
 export default function page() {
     const [content, setContent] = useState('');
     const [bucket, setBucket] = useState<IBucket | null>(null);
+    const [successMessage, SetSuccessMessage] = useState(false)
     const params = useParams<{ bucket_id: string }>();
 
     const handleContentChange = (e: any) => {
@@ -24,6 +25,7 @@ export default function page() {
             const response = await axios.post(API_URL + '/message', { content, bucket_id: params.bucket_id });
             const { message } = response.data;
             console.log(message)
+            SetSuccessMessage(true)
             // Do something with the retrieved message
         } catch (error) {
             console.error('Error:', error);
@@ -53,11 +55,12 @@ export default function page() {
             <div className="w-[25%] sm:w-[25%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-t from-cream to-green">
 
                 {/* success message  */}
-                <p className="text-sm font-extrabold text-lime-100 mb-4 flex justify-center">Message sent successfully 🎉 </p>
-
-                <h1 className="text-4xl font-extrabold font-sans items-center mb-10">
-                    😅 Say Something...
-                    {bucket ? `about ${bucket.title}` : ''}
+                {successMessage && (
+                    <p className="text-sm font-extrabold text-lime-100 mb-4 flex justify-center">Message sent successfully 🎉 </p>
+                )}
+                <h1 className="text-2xl font-extrabold font-sans items-center mb-10">
+                    😅 Say Something... <br />
+                    <p className="text-xl italic">{bucket ? `about: ${bucket.title}` : ''}</p>
                 </h1>
 
                 {/* Write secret message */}

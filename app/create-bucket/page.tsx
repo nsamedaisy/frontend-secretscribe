@@ -56,23 +56,25 @@ const GenerateLink = ({ currentUser }: Props) => {
 
 
   return (
-    <div className='bg-gradient-to-tr from-green to-cream text-black min-h-screen flex flex-col items-center gap-4 justify-center'>
-      <h1 className='text-[25px] italic'>Generate your bucket link and share</h1>
-      <div className='flex items-center '>
-        <label htmlFor="title" className='text-[23px] pr-4 '>Title:</label>
-        <input placeholder='Enter a title' type="text" value={title} className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none placeholder:text-white" onChange={handleTitleChange} />
+    <div className=' bg-gradient-to-tr from-green to-cream text-black min-h-screen flex flex-col items-center gap-4 justify-center'>
+      <div className='w-[25%] sm:w-[25%] h-[30%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green'>
+        <h1 className='text-[25px] italic'>Generate your bucket link and share</h1>
+        <div className='flex items-center '>
+          <label htmlFor="title" className='text-[23px] pr-4 '>Title:</label>
+          <input placeholder='Enter a title' type="text" value={title} className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none placeholder:text-white" onChange={handleTitleChange} />
+        </div>
+        <div className='flex flex-row gap-4'>
+          {
+            topicLink && (
+              <section>
+                <p className='text-white'> {topicLink}</p>
+              </section>
+            )
+          }
+          <HiOutlineExternalLink onClick={copyLink} className="cursor-pointer" />
+        </div>
+        <button onClick={createBucket} className="flex items-center border-2 border-green py-2 p-4">Generate Link</button>
       </div>
-      <div className='flex flex-row gap-4'>
-        {
-          topicLink && (
-            <section>
-              <p className='text-white'> {topicLink}</p>
-            </section>
-          )
-        }
-        <HiOutlineExternalLink onClick={copyLink} className="cursor-pointer" />
-      </div>
-      <button onClick={createBucket} className="flex items-center border-2 border-green py-2 p-4">Generate Link</button>
     </div>
   )
 }

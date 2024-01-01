@@ -1,7 +1,8 @@
 export default function LoaderComponent() {
     return (
-        <div className="bg-gradient-to-tr from-green to-cream text-white w-full min-h-[100vh] flex items-center justify-center">
-            <span className="text-white">loading..</span>
+        <div className="pulsating-circle my-auto bg-gradient-to-tr from-green to-cream text-white w-full min-h-[100vh] flex flex-col gap-5 items-center justify-center">
+            <div className="w-[100px] h-[100px] rounded-full bg-black shadow-none animate-pulse"></div>
+            <span className="text-white text-2xl italic">Loading...</span>
         </div>
     )
 }

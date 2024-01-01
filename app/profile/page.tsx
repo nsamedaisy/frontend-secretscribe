@@ -6,8 +6,8 @@ import {
   FaEnvelope,
   FaFacebookSquare,
   FaRegCopy,
-  FaWhatsapp,
 } from "react-icons/fa";
+import { AiTwotoneMail } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { CurrentUserGuard } from "../_services/ui";
 import { IUser } from "../_services/utils";
@@ -45,9 +45,9 @@ const userProfile = ({ currentUser }: Props) => {
             <FaEnvelope className="w-6 h-6 mr-3" /> Share On Mail
           </button>
 
-          <button className="flex rounded-md justify-center bg-watGreen py-2 pl-4">
-            <FaWhatsapp className="w-6 h-6 mr-3 " /> Share on WhatsApp
-          </button>
+          <a href="/create-bucket" className="flex rounded-md justify-center bg-watGreen py-2 pl-4">
+            <AiTwotoneMail className="w-6 h-6 mr-3 " /> Create a bucket
+          </a>
 
           <button className="flex rounded-md justify-center bg-blue-950 py-2 pl-4">
             <FaFacebookSquare className="w-6 h-6 mr-3" /> Share on Facebook
