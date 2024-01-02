@@ -8,6 +8,7 @@ import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
 import Loader from "../components/loader";
 
 const Register = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +19,10 @@ const Register = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("/auth/register", { email, password });
+      const response = await axios.post(
+        process.env.BACKEND_URL + "/auth/signup",
+        { name, email, password }
+      );
       console.log(response.data); // Success message or response from the backend
       // Redirect to the profile page upon successful registration
       router.push("/profile");
@@ -58,6 +62,14 @@ const Register = () => {
           onSubmit={handleSubmit}
           className="flex flex-col ml-[15%] w-[70%]"
         >
+          <input
+            placeholder="Name"
+            type="text"
+            className="px-3 border-2 border-cream bg-green py-3 text-white focus:outline-none"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
           <input
             placeholder="Email"
             type="email"
