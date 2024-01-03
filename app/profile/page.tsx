@@ -6,17 +6,24 @@ import {
   FaEnvelope,
   FaFacebookSquare,
   FaRegCopy,
-  FaWhatsapp,
 } from "react-icons/fa";
+import { AiTwotoneMail } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { CurrentUserGuard } from "../_services/ui";
 import { IUser } from "../_services/utils";
+import { useRouter } from "next/navigation";
 
 interface Props {
   currentUser: IUser;
 }
 
 const userProfile = ({ currentUser }: Props) => {
+
+  const router = useRouter()
+
+  const handleViewMessages = () => {
+    router.push('/view-message');
+  };
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
@@ -34,20 +41,20 @@ const userProfile = ({ currentUser }: Props) => {
         </p>
 
         <section className="flex flex-col space-y-6 mt-8 text-white font-extrabold font-lobster mb-5">
-          <Link
-            href="/viewMessage"
+          <button
+            onClick={handleViewMessages}
             className="flex rounded-md justify-center bg-gradient-to-tr from-green to-cream items-center w-[20vw] border-2 border-green py-2 pl-4"
           >
             View Messages <FaArrowRight className="ml-3" />
-          </Link>
+          </button>
 
           <button className="flex rounded-md justify-center bg-red-700 py-2 pl-4">
             <FaEnvelope className="w-6 h-6 mr-3" /> Share On Mail
           </button>
 
-          <button className="flex rounded-md justify-center bg-watGreen py-2 pl-4">
-            <FaWhatsapp className="w-6 h-6 mr-3 " /> Share on WhatsApp
-          </button>
+          <a href="/create-bucket" className="flex rounded-md justify-center bg-watGreen py-2 pl-4">
+            <AiTwotoneMail className="w-6 h-6 mr-3 " /> Create a bucket
+          </a>
 
           <button className="flex rounded-md justify-center bg-blue-950 py-2 pl-4">
             <FaFacebookSquare className="w-6 h-6 mr-3" /> Share on Facebook

@@ -42,6 +42,22 @@ const Register = () => {
   };
 
 
+  // const handleGoogleSignin = async () => {
+  //   const { data, error } = await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       queryParams: {
+  //         access_type: "offline",
+  //         prompt: "consent",
+  //       },
+  //       redirectTo: urlToUse(),
+  //     },
+  //   });
+  //   setIsLoading(true);
+  // };
+
+
+
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
@@ -100,7 +116,9 @@ const Register = () => {
             <span className="border-b flex-grow"></span>
           </p>
 
-          <button className="flex items-center border-2 border-green py-2 pl-4">
+          <button
+            // onClick={() => handleGoogleSignin()}
+            className="flex items-center border-2 border-green py-2 pl-4">
             <img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" />{" "}
             Sign In with Google
           </button>
