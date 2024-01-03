@@ -11,12 +11,19 @@ import { AiTwotoneMail } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { CurrentUserGuard } from "../_services/ui";
 import { IUser } from "../_services/utils";
+import { useRouter } from "next/navigation";
 
 interface Props {
   currentUser: IUser;
 }
 
 const userProfile = ({ currentUser }: Props) => {
+
+  const router = useRouter()
+
+  const handleViewMessages = () => {
+    router.push('/view-message');
+  };
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
@@ -36,7 +43,6 @@ const userProfile = ({ currentUser }: Props) => {
         <section className="flex flex-col space-y-6 mt-8 text-white font-extrabold font-lobster mb-5">
           <button
             onClick={handleViewMessages}
-            href="/view-message"
             className="flex rounded-md justify-center bg-gradient-to-tr from-green to-cream items-center w-[20vw] border-2 border-green py-2 pl-4"
           >
             View Messages <FaArrowRight className="ml-3" />

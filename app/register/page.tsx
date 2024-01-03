@@ -42,19 +42,19 @@ const Register = () => {
   };
 
 
-  const handleGoogleSignin = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        queryParams: {
-          access_type: "offline",
-          prompt: "consent",
-        },
-        redirectTo: urlToUse(),
-      },
-    });
-    setIsLoading(true);
-  };
+  // const handleGoogleSignin = async () => {
+  //   const { data, error } = await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       queryParams: {
+  //         access_type: "offline",
+  //         prompt: "consent",
+  //       },
+  //       redirectTo: urlToUse(),
+  //     },
+  //   });
+  //   setIsLoading(true);
+  // };
 
 
 
@@ -117,7 +117,7 @@ const Register = () => {
           </p>
 
           <button
-            onClick={() => handleGoogleSignin()}
+            // onClick={() => handleGoogleSignin()}
             className="flex items-center border-2 border-green py-2 pl-4">
             <img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" />{" "}
             Sign In with Google
