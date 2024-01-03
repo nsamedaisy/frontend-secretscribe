@@ -34,7 +34,7 @@ const LandingPage = () => {
               </li>
               <li>
                 <Link
-                  href="/login"
+                  href="/register"
                   className="text-lg font-medium text-cream hover:text-white hover:underline"
                 >
                   Get Started
@@ -79,7 +79,7 @@ const LandingPage = () => {
               </li>
               <li className="mb-4">Explore different categories and topics, Join a community where secrets are shared and understood</li>
             </ul>
-            <Link href="/login" className="hover:bg-green hover:text-cream py-2 mt-10 text-green px-8 font-mono text-lg border-2 border-green">
+            <Link href="/register" className="hover:bg-green hover:text-cream py-2 mt-10 text-green px-8 font-mono text-lg border-2 border-green">
               Get Started
             </Link>
           </div>

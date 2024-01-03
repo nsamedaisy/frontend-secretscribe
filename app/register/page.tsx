@@ -19,10 +19,11 @@ const Register = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        process.env.BACKEND_URL + "/auth/signup",
-        { name, email, password }
-      );
+      const response = await axios.post("http://localhost:3000/auth/signup", {
+        name,
+        email,
+        password,
+      });
       console.log(response.data); // Success message or response from the backend
       // Redirect to the profile page upon successful registration
       router.push("/profile");
@@ -73,7 +74,7 @@ const Register = () => {
           <input
             placeholder="Email"
             type="email"
-            className="px-3 border-2 border-cream  bg-green py-3 text-white focus:outline-none"
+            className="px-3 border-2 border-cream border-t-0 bg-green py-3 text-white focus:outline-none"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
