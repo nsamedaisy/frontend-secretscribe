@@ -79,19 +79,19 @@ const Login = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
+            className="px-3 border-2 border-cream py-3 bg-green text-white focus:outline-none"
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
+            className="px-3 border-2 border-cream py-3 bg-green text-white focus:outline-none"
           />
           <button className="border border-black py-3" type="submit">Login</button>
         </form>
 
-        <p className="flex justify-center items-center py-2">
+        <p className="flex justify-center items-center mx-20 py-2">
           <span className="border-b flex-grow w-[]"></span>
           <span className="px-3 text-gray-500 font-bold">Or</span>
           <span className="border-b flex-grow"></span>
@@ -100,7 +100,9 @@ const Login = () => {
 
         <section className="flex flex-col space-y-6 w-[60%] ml-[20%] mt-8 text-white font-extrabold font-lobster mb-5">
           <button className="flex items-center border-2 border-green py-2 pl-4"><img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" /> Sign In with Google</button>
-          <button className="flex items-center border-2 border-green py-2 pl-4"><FaEnvelope className="w-5 h-5 mr-3 text-red-700" /> Sign In with Mail</button>
+          <button className="flex items-center border-2 border-green py-2 pl-4"><FaApple className="w-6 h-6 mr-3 text-blue-700" /> Sign In with Apple</button>
+          {/* <button className="flex items-center border-2 border-green py-2 pl-4"><FaEnvelope className="w-5 h-5 mr-3 text-red-700" /> Sign In with Mail</button>
+          <button className="flex items-center border-2 border-green py-2 pl-4"><FaFacebookF className="w-5 h-5 mr-3 text-yellow-700" /> Sign In with Facebook</button> */}
         </section>
         <p className="mb-10 items-center text-sm justify-center flex font-serif">Educators: Register as an individual</p>
       </div>
