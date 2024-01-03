@@ -1,7 +1,9 @@
-'use client'
+"use client";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { MdSend } from "react-icons/md";
+import axios from "axios";
 
 const WriteSecretMessage = () => {
   const [message, setMessage] = useState("");
@@ -23,6 +25,12 @@ const WriteSecretMessage = () => {
       return;
     }
     setSuccess(true);
+    // try {
+    //   await axios.post("/api/messages", { message });
+    //   setSuccess(true);
+    // } catch (error) {
+    //   console.error("Error sending message:", error);
+    // }
   };
 
   const handleCancel = () => {
@@ -62,8 +70,12 @@ const WriteSecretMessage = () => {
           </div>
         )}
 
-        { !success && !showCreateLink && ( <div><p className="mt-6 font-mono text-sm">254 characters remaining</p>
-        <hr className="mt-2 border-b-2 w-[20vw]" /> </div>)}
+        {!success && !showCreateLink && (
+          <div>
+            <p className="mt-6 font-mono text-sm">254 characters remaining</p>
+            <hr className="mt-2 border-b-2 w-[20vw]" />{" "}
+          </div>
+        )}
 
         {!success && (
           <button
@@ -86,12 +98,13 @@ const WriteSecretMessage = () => {
             >
               🔏 Create Link
             </Link>
-            <Link href="/"
-                className="text-red-500 mt-2 flex rounded-md my-6 justify-center items-center w-[20vw] border-2 border-red-600 text-lg font-bold"
-                onClick={handleCancel}
-              >
-                Cancel
-              </Link>
+            <Link
+              href="/"
+              className="text-red-500 mt-2 flex rounded-md my-6 justify-center items-center w-[20vw] border-2 border-red-600 text-lg font-bold"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Link>
           </div>
         )}
 
