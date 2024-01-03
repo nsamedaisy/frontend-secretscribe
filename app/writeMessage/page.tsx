@@ -45,20 +45,6 @@ const WriteSecretMessage = () => {
           </h1>
         )}
 
-        {/* {success && (
-          <div>
-            <p className="text-green">Sending message...</p>
-            {!showCreateLink && (
-              <button
-                className="text-red-500 underline mt-2"
-                onClick={handleCancel}
-              >
-                Cancel
-              </button>
-            )}
-          </div>
-        )} */}
-
         {!success && (
           <div className="">
             <p className="text-sm">
@@ -90,16 +76,22 @@ const WriteSecretMessage = () => {
         )}
 
         {success && showCreateLink && (
-          <div>
-            <p className="text-green text-xl mt-5">
+          <div className="flex flex-col">
+            <p className="text-lime-100 text-xl font-mono font-extrabold my-6">
               Click here 👇🏿 to create your own secret message link!
             </p>
             <Link
               href="/register"
-              className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2pl-4"
+              className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 text-lg font-bold text-lime-100"
             >
               🔏 Create Link
             </Link>
+            <Link href="/"
+                className="text-red-500 mt-2 flex rounded-md my-6 justify-center items-center w-[20vw] border-2 border-red-600 text-lg font-bold"
+                onClick={handleCancel}
+              >
+                Cancel
+              </Link>
           </div>
         )}
 
