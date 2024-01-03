@@ -38,9 +38,9 @@ const Login = () => {
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
-          <button className="text-xl">
+        <Link href="/" className="text-xl">
             <FaTimes />
-          </button>
+          </Link>
           <Link
             className="text-lg font-bold text-cream hover:underline"
             href="/register"
