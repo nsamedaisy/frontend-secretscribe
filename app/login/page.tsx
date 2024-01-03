@@ -14,9 +14,6 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-
-  let userId = ""
-  let mes = "";
   const router = useRouter();
 
   const loginUser = async (event: React.FormEvent<HTMLFormElement>) => {

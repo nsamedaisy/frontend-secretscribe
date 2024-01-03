@@ -34,12 +34,13 @@ const userProfile = ({ currentUser }: Props) => {
         </p>
 
         <section className="flex flex-col space-y-6 mt-8 text-white font-extrabold font-lobster mb-5">
-          <Link
-            href="/viewMessage"
+          <button
+            onClick={handleViewMessages}
+            href="/view-message"
             className="flex rounded-md justify-center bg-gradient-to-tr from-green to-cream items-center w-[20vw] border-2 border-green py-2 pl-4"
           >
             View Messages <FaArrowRight className="ml-3" />
-          </Link>
+          </button>
 
           <button className="flex rounded-md justify-center bg-red-700 py-2 pl-4">
             <FaEnvelope className="w-6 h-6 mr-3" /> Share On Mail

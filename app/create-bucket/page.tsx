@@ -67,7 +67,7 @@ const GenerateLink = ({ currentUser }: Props) => {
           {
             topicLink && (
               <section>
-                <p className='text-white'> {topicLink}</p>
+                <p className='text-white w-[100px]'> {topicLink}</p>
               </section>
             )
           }
