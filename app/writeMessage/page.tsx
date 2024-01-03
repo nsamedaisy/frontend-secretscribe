@@ -13,7 +13,7 @@ const WriteSecretMessage = () => {
     if (success) {
       timer = setTimeout(() => {
         setShowCreateLink(true);
-      }, 4000);
+      }, 2000);
     }
     return () => clearTimeout(timer);
   }, [success]);
@@ -33,8 +33,8 @@ const WriteSecretMessage = () => {
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-t from-cream to-green">
-        {success && !showCreateLink && (
-          <p className="text-5xl font-extrabold text-lime-100 mb-4 flex justify-center items-center">
+        {success && (
+          <p className="text-5xl font-extrabold font-abril text-lime-100 mb-4 flex justify-center items-center">
             Message sent successfully 🎉
           </p>
         )}
@@ -62,8 +62,8 @@ const WriteSecretMessage = () => {
           </div>
         )}
 
-        <p className="mt-6 font-mono text-sm">254 characters remaining</p>
-        <hr className="mt-2 border-b-2 w-[20vw]" />
+        { !success && !showCreateLink && ( <div><p className="mt-6 font-mono text-sm">254 characters remaining</p>
+        <hr className="mt-2 border-b-2 w-[20vw]" /> </div>)}
 
         {!success && (
           <button
