@@ -7,8 +7,7 @@ import { MdSend } from "react-icons/md";
 import { API_URL } from "../../_components/constant";
 import { useParams } from "next/navigation";
 import { IBucket } from "@/app/_services/utils";
-import Popup from "@/app/_components/popup";
-import RedirectPopUp from "@/app/_components/popup";
+import RedirectPopup from "@/app/_components/popup";
 
 export default function page() {
   const [content, setContent] = useState('');
@@ -115,7 +114,7 @@ export default function page() {
           </Link>
         </div>
       </div>
-      {isPopupOpen && (<RedirectPopUp onClose={handleClose} visible={isPopupOpen} />)}
+      {isPopupOpen && (<RedirectPopup onClose={handleClose} visible={isPopupOpen} />)}
     </div>
   );
 };

@@ -24,7 +24,7 @@ export default function page() {
     fetchMessages();
   }, []);
 
-
+  
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">

@@ -18,6 +18,11 @@ const GenerateLink = ({ currentUser }: Props) => {
     setTitle(e.target.value);
   };
 
+  //generate bucket link
+  const generateLink = (bucket_id: string) => {
+    return `${FRONT_END_URL}/write-message/${bucket_id}`;
+  }
+
   //copy link function
   const copyLink = async () => {
     try {
@@ -26,11 +31,6 @@ const GenerateLink = ({ currentUser }: Props) => {
     } catch (error) {
       console.error('Failed to copy link:', error);
     }
-  }
-
-  //generate bucket link
-  const generateLink = (bucket_id: string) => {
-    return `${FRONT_END_URL}/writeMessage/${bucket_id}`;
   }
 
   const createBucket = async () => {

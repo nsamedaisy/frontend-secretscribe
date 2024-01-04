@@ -22,4 +22,11 @@ interface IBucket {
     creator: IUser;
 }
 
-export type { ApiRes, IUser, IBucket };
+interface IMessage {
+    _id: string;
+    bucket_id: string;
+    content: string;
+    createdAt: Date | string;
+}
+
+export type { ApiRes, IUser, IBucket, IMessage };
