@@ -8,70 +8,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import { API_URL } from "../_components/constant";
 import { CurrentUserGuard } from "../_services/ui";
 import { IBucket, IMessage, IUser } from "../_services/utils";
-
-const dummyData: IBucket[] = [
-  {
-    "_id": "65947067e54a181f528ab531",
-    "title": "sent a message",
-    "creator": {
-      "name": "Sam",
-      "email": "sam@gmail.com",
-      "password": "",
-      "_id": "65947067e54a181f528ab532",
-      "createdAt": "2024-01-02T20:21:59.831Z",
-      "updatedAt": "2024-01-02T20:21:59.831Z"
-    },
-    "message_ids": [],
-  },
-  {
-    "_id": "65950f48e54a181f528ab53f",
-    "title": "What do you think about php",
-    "creator": {
-      "password": "",
-      "_id": "65950f48e54a181f528ab540",
-      "createdAt": "2024-01-03T07:39:52.641Z",
-      "updatedAt": "2024-01-03T07:39:52.641Z"
-    },
-    "message_ids": [],
-  },
-  {
-    "_id": "65951766e54a181f528ab54a",
-    "title": "good life requires sacrifices ",
-    "creator": {
-      "password": "",
-      "_id": "65951766e54a181f528ab54b",
-      "createdAt": "2024-01-03T08:14:30.192Z",
-      "updatedAt": "2024-01-03T08:14:30.192Z"
-    },
-    "message_ids": [],
-  },
-  {
-    "_id": "659563a965b9dd457cfe96e8",
-    "title": "how do you make fufu and eru",
-    "creator": {
-      "name": "daisi",
-      "email": "daisi@gmail.com",
-      "password": "",
-      "_id": "659563a965b9dd457cfe96e9",
-      "createdAt": "2024-01-03T13:39:53.622Z",
-      "updatedAt": "2024-01-03T13:39:53.622Z"
-    },
-    "message_ids": [],
-  },
-  {
-    "_id": "659563f265b9dd457cfe96eb",
-    "title": "2025 election",
-    "creator": {
-      "name": "daisi",
-      "email": "daisi@gmail.com",
-      "password": "",
-      "_id": "659563f265b9dd457cfe96ec",
-      "createdAt": "2024-01-03T13:41:07.000Z",
-      "updatedAt": "2024-01-03T13:41:07.000Z"
-    },
-    "message_ids": [],
-  }
-];
+import { useRouter } from "next/navigation";
 
 interface Props {
   currentUser: IUser;
@@ -79,9 +16,9 @@ interface Props {
 
 function viewSecretMessage({ currentUser }: Props) {
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const [buckets, setBuckets] = useState<IBucket[]>(dummyData);
+  const [buckets, setBuckets] = useState<IBucket[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-
+  const router = useRouter()
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -106,10 +43,10 @@ function viewSecretMessage({ currentUser }: Props) {
   useEffect(() => {
     const fetchUserBuckets = async () => {
       try {
-        const response = await axios.get<{ buckets: IBucket[] }>(API_URL + '/bucket/user/' + currentUser._id);
+        const response = await axios.get(API_URL + '/bucket/user/' + currentUser._id);
         const { buckets } = response.data;
-        if (buckets && buckets.length > 1) setBuckets(buckets);
-        console.log(buckets);
+        if (buckets && buckets.length > 0) setBuckets(buckets);
+        console.log({ buckets });
 
       } catch (error) {
         console.error(error);
@@ -117,6 +54,10 @@ function viewSecretMessage({ currentUser }: Props) {
     };
     fetchUserBuckets()
   }, [])
+
+  const handleback = () => {
+    router.push('/-1')
+  }
 
 
 
@@ -127,20 +68,22 @@ function viewSecretMessage({ currentUser }: Props) {
           <button type="button" onClick={toggleDropdown} className="transition duration-300 ease-in-out inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">Select a buckect To view the message  <FaAngleDown className="-mr-1 h-5 w-5 text-black" />
           </button>
           {isOpen && (
-            <ul className="h-64 overflow-y-auto scrollbar-none absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none " role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
-              {buckets?.map((bucket) => (
-                <li key={bucket._id} className="bg-black block text-white px-4 py-4">
+            <ul className="h-fit min-h-[16rem] overflow-y-auto scrollbar-none absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none " role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+              {buckets.map((bucket) => (
+                <li key={bucket._id} className="bg-black block text-white px-4 py-4 my-2">
                   <Link href={`/view-message/${bucket._id}`}>{bucket.title}</Link>
                 </li>
               ))}
-              <p className="text-black">man</p>
-              <p className="text-black">man</p>
-              <p className="text-black">man</p>
-              <p className="text-black">man</p>
+
+              {buckets?.length <= 0 && (
+                <div className="h-full w-full flex justify-center items-center">
+                  <span className="text-black tex-[2rem]">No Topics Found</span>
+                </div>
+              ) || null}
             </ul>
           )}
-
         </div>
+        
         <h1 className="text-5xl font-extrabold text-cream items-center">
           My SecretScribe 😅{" "}
         </h1>
