@@ -8,6 +8,7 @@ interface ApiRes {
 
 interface IUser {
     _id: string;
+    // id: string;
     email: string;
     name: string;
     createdAt?: Date | string;
@@ -19,7 +20,7 @@ interface IBucket {
     _id: string;
     title: string;
     message_ids: string[];
-    creator: IUser;
+    creator_id: string;
 }
 
 interface IMessage {

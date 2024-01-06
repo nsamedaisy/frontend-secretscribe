@@ -55,11 +55,6 @@ function viewSecretMessage({ currentUser }: Props) {
     fetchUserBuckets()
   }, [])
 
-  const handleback = () => {
-    router.push('/-1')
-  }
-
-
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
@@ -83,7 +78,7 @@ function viewSecretMessage({ currentUser }: Props) {
             </ul>
           )}
         </div>
-        
+
         <h1 className="text-5xl font-extrabold text-cream items-center">
           My SecretScribe 😅{" "}
         </h1>
