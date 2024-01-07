@@ -26,13 +26,12 @@ const Login = () => {
       .then((resp: ApiRes) => {
         console.log("this is the response", resp);
         localStorage.setItem("token", resp.data.token);
-        router.push(`/create-bucket`);
+        router.push(`/profile`);
         // mes = resp.data.message;
         // setMessage(resp.data.message);
       })
       .catch((err) => {
         console.error("An error occured on the frontend", err);
-        // Handle login error, e.g., show error message
       });
   };
 

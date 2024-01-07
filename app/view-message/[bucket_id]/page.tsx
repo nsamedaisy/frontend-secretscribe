@@ -5,11 +5,13 @@ import axios from 'axios';
 import { useState, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { API_URL } from "../../_components/constant";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export default function page() {
   const [messages, setMessages] = useState<any[]>([]);
   const params = useParams<{ bucket_id: string }>();
+
+  const router = useRouter()
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -25,10 +27,17 @@ export default function page() {
   }, []);
 
 
+  const handleback = () => {
+    router.push('/view-message')
+  }
+
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
+        <div onClick={handleback} className="bg-white text-black border border-gray-800 flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer">
+          <FaArrowLeft className="ml-3" /> <p>Go back to select a bucket</p>
+        </div>
         <h1 className="text-5xl font-extrabold text-cream items-center">
           My SecretScribe 😅{" "}
         </h1>

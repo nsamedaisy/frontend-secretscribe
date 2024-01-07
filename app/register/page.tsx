@@ -37,7 +37,7 @@ const Register = () => {
       // Handle sign-up error, e.g., show error message
       .catch((err) => {
         console.error("An error occure on frontend", err);
-        console.log({ username: name, email: email, password: password });
+        // console.log({ username: name, email: email, password: password });
       })
   };
 
