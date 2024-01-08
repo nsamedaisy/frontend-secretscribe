@@ -41,23 +41,6 @@ const Register = () => {
       })
   };
 
-
-  // const handleGoogleSignin = async () => {
-  //   const { data, error } = await supabase.auth.signInWithOAuth({
-  //     provider: "google",
-  //     options: {
-  //       queryParams: {
-  //         access_type: "offline",
-  //         prompt: "consent",
-  //       },
-  //       redirectTo: urlToUse(),
-  //     },
-  //   });
-  //   setIsLoading(true);
-  // };
-
-
-
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
@@ -103,7 +86,7 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button disabled={isLoading} title={isLoading ? "signing up..." : "sign up"} type="submit" className="flex items-center justify-center border-2 border-green py-2 text-white">
+          <button disabled={isLoading} title={isLoading ? "signing up..." : "sign up"} type="submit" className="flex items-center justify-center border-2 border-green py-2 text-white cursor-pointer">
             <FaLockOpen className="w-5 h-5 mr-3 text-red-700" /> Sign Up
           </button>
         </form>
