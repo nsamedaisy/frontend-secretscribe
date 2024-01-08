@@ -11,14 +11,20 @@ import { FiSettings } from "react-icons/fi";
 import { CurrentUserGuard } from "../_services/ui";
 import { IUser } from "../_services/utils";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface Props {
   currentUser: IUser;
 }
 
 const userProfile = ({ currentUser }: Props) => {
+  const [inputValue, setInputValue] = useState("")
 
   const router = useRouter()
+
+  const handleChange = (e: any) => {
+    setInputValue(e.target.value)
+  }
 
 
   return (
@@ -39,11 +45,25 @@ const userProfile = ({ currentUser }: Props) => {
 
         <section className="flex flex-col space-y-6 mt-8 text-white font-extrabold font-lobster mb-5">
 
+          <input
+            placeholder="Your topic of interest..."
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            className="px-3 border rounded-md border-cream py-3 bg-transparent text-white focus:outline-none placeholder:text-cream w-[100%]"
+          />
+
+          <div className='flex flex-row justify-between  gap-2'>
+            <p className='text-white max-w-[300px] border border-gray-700 fixed'></p>
+            <FaRegCopy size="1.7rem" className="cursor-pointer relative" />
+          </div>
+          <button className="flex items-center justify-center border-2 border-green bg-green py-2 p-4 rounded-md">Generate Link</button>
+
           <p className="border-b-2 my-2 w-[20vw]"></p>
 
           <Link
             href="/view-message"
-            className="flex rounded-md justify-center bg-gradient-to-tr from-green to-cream items-center w-[20vw] border-2 border-green py-2 pl-4"
+            className="flex rounded-md justify-center bg-cream text-green items-center w-[20vw] border-2 border-green py-2 pl-4"
           >
             View Messages <FaArrowRight className="ml-3" />
           </Link>
