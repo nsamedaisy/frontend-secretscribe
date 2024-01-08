@@ -88,7 +88,7 @@ const userProfile = ({ currentUser }: Props) => {
           />
 
           <div className='flex flex-row justify-between  gap-2'>
-            <p className='text-white max-w-[300px] border border-gray-700 fixed'></p>
+            {topicLink && (<p className='text-white max-w-[300px] border border-gray-700 fixed'> {topicLink}</p>)}
             <FaRegCopy size="1.7rem" className="cursor-pointer relative" />
           </div>
           <button className="flex items-center justify-center border-2 border-green bg-green py-2 p-4 rounded-md">Generate Link</button>
