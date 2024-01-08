@@ -1,4 +1,5 @@
 "use client"
+
 import Link from "next/link";
 
 import {
@@ -84,14 +85,23 @@ const userProfile = ({ currentUser }: Props) => {
             type="text"
             value={title}
             onChange={handleChange}
-            className="px-3 border rounded-md border-cream py-3 bg-transparent text-white focus:outline-none placeholder:text-cream w-[100%]"
+            className="px-3 border rounded-md border-white py-3 bg-transparent text-white focus:outline-none placeholder:text-cream w-[100%]"
           />
 
-          <div className='flex flex-row justify-between  gap-2'>
-            {topicLink && (<p className='text-white max-w-[300px] border border-gray-700 fixed'> {topicLink}</p>)}
-            <FaRegCopy size="1.7rem" className="cursor-pointer relative" />
+          <div className="flex justify-between p-3 items-center w-full">
+            {topicLink && (
+              <p className="text-white text-sm max-w-[20%] whitespace-normal flex flex-wrap fixed ml-16">
+                {topicLink}
+              </p>
+            )}
+            <FaRegCopy onClick={copyLink} size="1.7rem" className="cursor-pointer" />
           </div>
-          <button className="flex items-center justify-center border-2 border-green bg-green py-2 p-4 rounded-md">Generate Link</button>
+          <button
+            onClick={createBucket}
+            className="flex items-center justify-center border-2 border-green bg-green py-2 p-4 rounded-md"
+          >
+            Generate Link
+          </button>
 
           <p className="border-b-2 my-2 w-[20vw]"></p>
 
