@@ -1,3 +1,13 @@
+import React from 'react'
+
+const Page = () => {
+    return (
+        <div>Page</div>
+    )
+}
+
+export default Page
+
 // "use client"
 // import React, { useState } from 'react';
 // import axios from 'axios';
