@@ -55,7 +55,6 @@ function viewSecretMessage({ currentUser }: Props) {
     fetchUserBuckets()
   }, [])
 
-
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
