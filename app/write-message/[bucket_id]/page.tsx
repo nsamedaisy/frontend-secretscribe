@@ -1,4 +1,5 @@
 "use client"
+
 import Link from "next/link";
 import axios from 'axios';
 import { ChangeEvent, useEffect, useState } from "react";
@@ -13,8 +14,20 @@ export default function page() {
   const [content, setContent] = useState('');
   const [bucket, setBucket] = useState<IBucket | null>(null);
   const [successMessage, SetSuccessMessage] = useState(false)
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  // const [isPopupOpen, setIsPopupOpen] = useState(false);
   const params = useParams<{ bucket_id: string }>();
+
+  const [showCreateLink, setShowCreateLink] = useState(false);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (successMessage) {
+      timer = setTimeout(() => {
+        setShowCreateLink(true);
+      }, 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [successMessage]);
 
   const handleContentChange = (e: any) => {
     setContent(e.target.value);
@@ -26,20 +39,21 @@ export default function page() {
     try {
       const response = await axios.post(API_URL + '/message', { content, bucket_id: params.bucket_id });
       const { message } = response.data;
-      console.log(message)
+      // console.log(message)
       SetSuccessMessage(true)
       // Do something with the retrieved message
     } catch (error) {
       console.error('Error:', error);
     }
     // Open the popup
-    setIsPopupOpen(true);
+    // setIsPopupOpen(true);
 
     setContent('')
   };
 
   const handleClose = () => {
-    setIsPopupOpen(false);
+    SetSuccessMessage(false);
+    setShowCreateLink(false);
   };
 
   useEffect(() => {
@@ -64,17 +78,20 @@ export default function page() {
 
         {/* success message  */}
         {successMessage && (
-          <p className="text-sm font-extrabold text-lime-100 mb-4 flex justify-center">Message sent successfully 🎉 </p>
+          <p className="text-5xl font-extrabold font-mono text-lime-100 mb-4 flex justify-center items-center">
+            Message sent successfully 🎉🎉🎉
+          </p>
         )}
-        <h1 className="text-2xl font-extrabold font-sans items-center mb-10">
-          😅 Say Something... <br />
-          <p className="text-xl italic">{bucket ? `about: ${bucket.title}` : ''}</p>
-        </h1>
+
+        {!successMessage && (<h1 className="text-2xl font-extrabold font-sans items-center mb-10">
+          😅 What do you have to say about
+          <p className="text-xl font-marker flex items-center justify-center mt-3 font-normal">{bucket ? `${bucket.title}` : ''}</p>
+        </h1>)}
 
         {/* Write secret message */}
-        <form onSubmit={sendMessage}>
+        {!successMessage && (<form onSubmit={sendMessage}>
           <div className="">
-            <p className="text-sm">What is that you always want to tell me <span className="text-red-700">*</span></p>
+            <p className="text-sm">What is that you always want to say in secret <span className="text-red-700">*</span></p>
             <fieldset className="border-none">
               <textarea
                 className="w-full h-40 px-3 py-2 bg-transparent text-white resize-none focus:outline-none"
@@ -95,26 +112,34 @@ export default function page() {
             Send Message
             <MdSend className="ml-3" />
           </button>
-        </form>
+        </form>)}
 
-        <p className="text-green">
+        {!successMessage && (<p className="text-green">
           Say what do you think about daisyb3ll3 or Leave a feedback for
           daisyb3ll3 anonymously using the form above.. 🥰 Thank You!! 😍😊
-        </p>
+        </p>)}
         {/* after confirmation the user should be chance to create their own link  */}
-        <div className="hidden">
-          <p>
-            Click here 👇🏿 to create your own secret message link!
-          </p>
-          <Link
-            href="/login"
-            className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
-          >
-            🔏 Create Link
-          </Link>
-        </div>
+        {successMessage && showCreateLink && (
+          <div className="flex flex-col">
+            <p className="text-lime-100 text-xl font-mono font-extrabold my-6">
+              Click here 👇🏿 to create your own secret message link!
+            </p>
+            <Link
+              href="/register"
+              className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 text-lg font-bold text-lime-100"
+            >
+              🔏 Create Link
+            </Link>
+            <Link
+              href="/"
+              className="text-red-500 mt-2 flex rounded-md my-6 justify-center items-center w-[20vw] border-2 border-red-600 text-lg font-bold"
+              onClick={handleClose}
+            >
+              Cancel
+            </Link>
+          </div>
+        )}
       </div>
-      {isPopupOpen && (<RedirectPopup onClose={handleClose} visible={isPopupOpen} />)}
     </div>
   );
 };
