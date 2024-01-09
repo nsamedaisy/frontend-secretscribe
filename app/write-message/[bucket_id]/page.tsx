@@ -1,4 +1,5 @@
 "use client"
+
 import Link from "next/link";
 import axios from 'axios';
 import { ChangeEvent, useEffect, useState } from "react";
@@ -67,14 +68,14 @@ export default function page() {
           <p className="text-sm font-extrabold text-lime-100 mb-4 flex justify-center">Message sent successfully 🎉 </p>
         )}
         <h1 className="text-2xl font-extrabold font-sans items-center mb-10">
-          😅 Say Something... <br />
-          <p className="text-xl italic">{bucket ? `about: ${bucket.title}` : ''}</p>
+          😅 What do you have to say about
+          <p className="text-xl font-marker flex items-center justify-center mt-3 font-normal">{bucket ? `${bucket.title}` : ''}</p>
         </h1>
 
         {/* Write secret message */}
         <form onSubmit={sendMessage}>
           <div className="">
-            <p className="text-sm">What is that you always want to tell me <span className="text-red-700">*</span></p>
+            <p className="text-sm">What is that you always want to say in secret <span className="text-red-700">*</span></p>
             <fieldset className="border-none">
               <textarea
                 className="w-full h-40 px-3 py-2 bg-transparent text-white resize-none focus:outline-none"
