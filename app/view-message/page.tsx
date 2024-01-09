@@ -16,12 +16,7 @@ interface Props {
 function viewSecretMessage({ currentUser }: Props) {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [buckets, setBuckets] = useState<IBucket[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter()
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen)
-  }
 
   useEffect(() => {
     // Fetching messages
