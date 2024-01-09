@@ -7,6 +7,7 @@ import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
 import { ApiRes } from "../_services/utils";
+import Loader from "../_components/loader";
 
 
 const Register = () => {
@@ -40,23 +41,6 @@ const Register = () => {
         console.log({ username: name, email: email, password: password });
       })
   };
-
-
-  // const handleGoogleSignin = async () => {
-  //   const { data, error } = await supabase.auth.signInWithOAuth({
-  //     provider: "google",
-  //     options: {
-  //       queryParams: {
-  //         access_type: "offline",
-  //         prompt: "consent",
-  //       },
-  //       redirectTo: urlToUse(),
-  //     },
-  //   });
-  //   setIsLoading(true);
-  // };
-
-
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
@@ -103,8 +87,19 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button disabled={isLoading} title={isLoading ? "signing up..." : "sign up"} type="submit" className="flex items-center justify-center border-2 border-green py-2 text-white">
-            <FaLockOpen className="w-5 h-5 mr-3 text-red-700" /> Sign Up
+          <button
+            disabled={isLoading}
+            title={isLoading ? "Signing up..." : "Sign up"} // Provide a string value for the title prop
+            type="submit"
+            className="flex items-center justify-center border-2 border-green py-2 text-white cursor-pointer"
+          >
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                <FaLockOpen className="w-5 h-5 mr-3 text-red-700" /> Sign Up
+              </>
+            )}
           </button>
         </form>
 

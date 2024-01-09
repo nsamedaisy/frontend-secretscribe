@@ -75,8 +75,7 @@ const LandingPage = () => {
       <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-60 bg-cream text-gray-800">
         <h2 className="text-5xl font-extrabold font-abril pb-20 leading-relaxed">
           SecretScribe is an interactive anonymous messaging app. Create your
-          Profile Link and Send it to all your contacts to check what do your
-          friends think about you. SecretScribe is free!
+          Profile Link and Send it to all your contacts and(or) Facebook friends to know what they think about you, a particular think or the society. SecretScribe is free!
         </h2>
         <div className="flex flex-col sm:flex-row items-center">
           <div className="mr-0 sm:mr-40">
