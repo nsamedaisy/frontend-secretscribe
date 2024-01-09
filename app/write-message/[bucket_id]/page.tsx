@@ -140,7 +140,6 @@ export default function page() {
           </div>
         )}
       </div>
-      {/* {isPopupOpen && (<RedirectPopup onClose={handleClose} visible={isPopupOpen} />)} */}
     </div>
   );
 };
