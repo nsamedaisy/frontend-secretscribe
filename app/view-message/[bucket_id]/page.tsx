@@ -33,36 +33,34 @@ export default function page() {
 
 
   return (
-    <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-green to-cream items-center flex flex-col">
+    <div className="bg-gradient-to-tr from-green to-cream min-h-screen bg-gradie flex items-center justify-center">
+      <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-cream text-black items-center flex flex-col">
 
-        <div onClick={handleback} className=" text-green border border-cream flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer font-bold mb-5">
+        <div onClick={handleback} className=" text-green border border-green flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer font-bold mb-5">
           <FaArrowLeft /> <p> Select More Topics</p>
         </div>
 
-        <h1 className="text-5xl font-extrabold text-cream items-center">
+        <h1 className="text-4xl font-extrabold text-green items-center">
           My SecretScribe 😅{" "}
         </h1>
-        <p className=" text-cream w-[30vw] items-center justify-center text-xl flex my-4">
+        <p className="w-[30vw] font-serif items-center justify-center text-xl flex my-4">
           👇 check 👇 out the messages that you have received
         </p>
-
-
 
         {/* Recieve secret message */}
         <div className="w-[20vw]">
 
           {messages?.length > 0 ? (
             messages.map((message) => (
-              <fieldset key={message._id} className="border-2 border-cream rounded p-4 mt-4">
+              <fieldset key={message._id} className="border-2 border-green rounded p-4 mt-4">
                 <legend className="text-sm font-semibold">Message:</legend>
-                <p>{message.content}</p>
+                <p className="font-extrabold">{message.content}</p>
                 <p className="text-sm mt-2">_anonymous {message.createdAt.toString()} time</p>
-                <button className="border rounded-xl mt-3 py-1">✨ Share response ✨</button>
+                <button className="border border-green rounded-xl mt-3 py-1 text-sm px-1">✨ Share response ✨</button>
               </fieldset>
             ))
           ) : (
-            <fieldset className="border-2 border-red-600 text-red-700 font-bold rounded p-3 mt-3">
+            <fieldset className="border-2 border-red-600 text-red-500 font-bold rounded p-3 mt-3">
               <p>Sorry 😔 you haven't received any message in the past 48 hours with regards to this topic. Share your link with your friends to get secret message(s).</p>
             </fieldset>
           )}
@@ -80,11 +78,11 @@ export default function page() {
           Load More
         </button>
 
-        <p className="border-b-2 w-[20vw]"></p>
+        <p className="border-b-2 border-green w-[20vw]"></p>
 
         <Link
           href="/profile"
-          className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+          className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] text-cream border-2 border-green py-2 pl-4 font-extrabold"
         >
           Go back
           <FaArrowLeft className="ml-3" />
