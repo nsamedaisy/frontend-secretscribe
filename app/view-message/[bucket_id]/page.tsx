@@ -34,47 +34,45 @@ export default function page() {
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
-        <div onClick={handleback} className="bg-white text-black border border-gray-800 flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer">
-          <FaArrowLeft className="ml-3" /> <p>Go back to select a bucket</p>
+      <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-green to-cream items-center flex flex-col">
+
+        <div onClick={handleback} className=" text-green border border-cream flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer font-bold mb-5">
+          <FaArrowLeft /> <p> Select More Topics</p>
         </div>
+
         <h1 className="text-5xl font-extrabold text-cream items-center">
           My SecretScribe 😅{" "}
         </h1>
-        <p className="font-semibold w-[20vw] my-4">
-          👇 Scroll 👇 down or check 👇 out the messages that you have received
+        <p className=" text-cream w-[30vw] items-center justify-center text-xl flex my-4">
+          👇 check 👇 out the messages that you have received
         </p>
+
+
 
         {/* Recieve secret message */}
         <div className="w-[20vw]">
-          <fieldset className="border-2 border-cream rounded p-4">
-            <legend className="text-sm font-semibold">Messages:</legend>
-            <div className="flex  flex-col mt-2 overflow-y-scroll h-[200px]">
-              <ul >
-                {messages?.map((message) => (
-                  <li className="mb-4 mr-2 rounded-lg bg-slate-100 px-4 py-4 text-black  text-base text-primary-600"
-                    role="alert" key={message._id}>{message.content}</li>
-                ))}
-              </ul>
-              <p className="text-sm mt-4">_anonymous Time sent</p>
-              <button className="border rounded-xl mt-3 py-1">
-                ✨ Share response ✨
-              </button>
-            </div>
-            {/* Place your received messages and time sent here */}
-          </fieldset>
 
-          <fieldset className="border-2 border-cream text-green font-bold rounded p-3 mt-3">
+          {messages?.length > 0 ? (
+            messages.map((message) => (
+              <fieldset key={message._id} className="border-2 border-cream rounded p-4 mt-4">
+                <legend className="text-sm font-semibold">Message:</legend>
+                <p>{message.content}</p>
+                <p className="text-sm mt-2">_anonymous {message.createdAt.toString()} time</p>
+                <button className="border rounded-xl mt-3 py-1">✨ Share response ✨</button>
+              </fieldset>
+            ))
+          ) : (
+            <fieldset className="border-2 border-red-600 text-red-700 font-bold rounded p-3 mt-3">
+              <p>Sorry 😔 you haven't received any message in the past 48 hours with regards to this topic. Share your link with your friends to get secret message(s).</p>
+            </fieldset>
+          )}
+
+          {/* <fieldset className="border-2 border-cream text-green font-bold rounded p-3 mt-3">
             <p>
               You Have Reached The End! 🏁 🙋 Ask your friends to send more
               messages or view Archived Messages
             </p>
-          </fieldset>
-
-          <fieldset className="border-2 hidden border-red-600 text-red-700 font-bold rounded p-3 mt-3">
-            {/* Found no message text  */}
-            <p> Sorry 😔 you haven't recieve any message in the past 48hours. Share your link to yours friends to get secret message(s)</p>
-          </fieldset>
+          </fieldset> */}
         </div>
 
         <button className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2">
