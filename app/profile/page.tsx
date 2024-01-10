@@ -155,7 +155,7 @@ const userProfile = ({ currentUser }: Props) => {
           Settings
           <FiSettings className="w-5 h-5 ml-3" />
         </button>
-        {isDropDown && <SettingsDropdown onLogout={handleLogout} />}
+        {isDropDown && <SettingsDropdown />}
 
       </div>
     </div>
