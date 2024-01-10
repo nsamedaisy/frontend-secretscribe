@@ -1,42 +1,60 @@
-'use client'
+import { useEffect, useRef } from "react";
+import { FiLogOut } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import { API_URL, FRONT_END_URL } from "../_components/constant";
+import axios from "axios";
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import { FiSettings, FiLogOut } from 'react-icons/fi';
+interface Props {
+    onLogout: () => void;
+}
 
-const SettingsDropdown = () => {
-    const [isOpen, setIsOpen] = useState(false);
+const SettingsDropdown = ({ onLogout }: Props) => {
+    const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
-    const handleLogout = () => {
-        // Perform the necessary logout logic here
-        // For example, clear the user's session, remove tokens, etc.
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                closeDropdown();
+            }
+        };
 
-        // Redirect the user to the logout page
-        router.push('/logout');
+        document.addEventListener("mousedown", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, []);
+
+    const closeDropdown = () => {
+        // Close the dropdown
     };
 
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
+    const handleLogout = async () => {
+        try {
+            await axios.post(API_URL + "/logout");
+            onLogout();
+            router.push("/login");
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
-        <div className="relative">
+        <div
+            ref={dropdownRef}
+            className="absolute right-40 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-10"
+        >
             <button
-                onClick={toggleDropdown}
-                className="flex rounded-md my-6 justify-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+                onClick={handleLogout}
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
             >
-                Settings
-                <FiSettings className="w-5 h-5 ml-3" />
+                <FiLogOut className="w-5 h-5 mr-2" />
+                Logout
             </button>
-            {isOpen && (
-                <div className="absolute top-10 right-0 bg-white shadow-md rounded-md py-2 px-4">
-                    <button onClick={handleLogout} className="flex items-center space-x-2 cursor-pointer">
-                        <FiLogOut className="w-5 h-5" />
-                        Logout
-                    </button>
-                </div>
-            )}
         </div>
     );
 };

@@ -79,6 +79,12 @@ const userProfile = ({ currentUser }: Props) => {
     window.open(facebookUrl, "_blank");
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    // setCurrentUser(null);
+    router.push("/login");
+  };
+
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
@@ -149,7 +155,8 @@ const userProfile = ({ currentUser }: Props) => {
           Settings
           <FiSettings className="w-5 h-5 ml-3" />
         </button>
-        {isDropDown && <SettingsDropdown />}
+        {isDropDown && <SettingsDropdown onLogout={handleLogout} />}
+
       </div>
     </div>
   );
