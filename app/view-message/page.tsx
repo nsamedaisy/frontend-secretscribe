@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import Link from "next/link";
-import axios from 'axios';
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { API_URL } from "../_components/constant";
@@ -16,13 +16,13 @@ interface Props {
 function viewSecretMessage({ currentUser }: Props) {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [buckets, setBuckets] = useState<IBucket[]>([]);
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     // Fetching messages
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(API_URL + '/message');
+        const response = await axios.get(API_URL + "/message");
         const { messages } = response.data;
         setMessages(messages);
       } catch (error) {
@@ -31,23 +31,24 @@ function viewSecretMessage({ currentUser }: Props) {
     };
 
     fetchMessages();
-  }, [])
+  }, []);
 
-  // Fetching buckets 
+  // Fetching buckets
   useEffect(() => {
     const fetchUserBuckets = async () => {
       try {
-        const response = await axios.get(API_URL + '/bucket/user/' + currentUser._id);
+        const response = await axios.get(
+          API_URL + "/bucket/user/" + currentUser._id
+        );
         const { buckets } = response.data;
         if (buckets && buckets.length > 0) setBuckets(buckets);
         console.log({ buckets });
-
       } catch (error) {
         console.error(error);
       }
     };
-    fetchUserBuckets()
-  }, [])
+    fetchUserBuckets();
+  }, []);
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen flex items-center justify-center">
@@ -61,18 +62,30 @@ function viewSecretMessage({ currentUser }: Props) {
         </div>
 
         <div className="w-[80%] overflow-hidden">
-          <ul className="h-[16rem] sm:h-[20rem] overflow-y-auto scrollbar-none  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
-            {buckets.length > 0 ? (
-              buckets.map((bucket) => (
-                <li key={bucket._id} className="bg-transparent font-bold shadow-2xl shadow-cream text-green px-4 my-2 py-2">
-                  <Link href={`/view-message/${bucket._id}`}>{bucket.title}</Link>
+          <ul
+            className="h-[16rem] sm:h-[20rem] overflow-y-auto scrollbar-none  focus:outline-none"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="menu-button"
+          >
+            {buckets.length > 0
+              ? buckets.map((bucket) => (
+                <li
+                  key={bucket._id}
+                  className="bg-transparent border font-bold shadow-2xl shadow-cream text-green px-4 my-2 py-2"
+                >
+                  <Link href={`/view-message/${bucket._id}`}>
+                    {bucket.title}
+                  </Link>
                 </li>
               ))
-            ) : (
-              <li className="flex justify-center items-center h-[16rem] sm:h-[20rem]">
-                <span className="text-red-600 font-semibold text-[2rem]">Sorry Your Created Topic(s) Has Expired</span>
-              </li>
-            )}
+              : buckets.length === 0 && (
+                <li className="flex justify-center items-center h-[16rem] sm:h-[20rem]">
+                  <span className="text-red-600 font-semibold text-[2rem]">
+                    Sorry Your Created Topic(s) Has Expired
+                  </span>
+                </li>
+              )}
           </ul>
         </div>
 
@@ -88,7 +101,6 @@ function viewSecretMessage({ currentUser }: Props) {
       </div>
     </div>
   );
-};
+}
 
 export default CurrentUserGuard(viewSecretMessage);
-
