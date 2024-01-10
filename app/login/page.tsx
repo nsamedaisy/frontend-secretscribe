@@ -16,7 +16,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  const loginUser = async (event: React.FormEvent<HTMLFormElement>) => {
+  const loginUser = async (event: any) => {
     event.preventDefault();
 
     axios.post(API_URL + "/auth/login", {
@@ -27,8 +27,6 @@ const Login = () => {
         console.log("this is the response", resp);
         localStorage.setItem("token", resp.data.token);
         router.push(`/profile`);
-        // mes = resp.data.message;
-        // setMessage(resp.data.message);
       })
       .catch((err) => {
         console.error("An error occured on the frontend", err);

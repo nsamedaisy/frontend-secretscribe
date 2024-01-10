@@ -7,6 +7,8 @@ import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
 import { ApiRes } from "../_services/utils";
+import { GoogleLogin } from '@react-oauth/google';
+
 
 
 const Register = () => {
@@ -42,25 +44,9 @@ const Register = () => {
   };
 
 
-  // const handleGoogleSignin = async () => {
-  //   const { data, error } = await supabase.auth.signInWithOAuth({
-  //     provider: "google",
-  //     options: {
-  //       queryParams: {
-  //         access_type: "offline",
-  //         prompt: "consent",
-  //       },
-  //       redirectTo: urlToUse(),
-  //     },
-  //   });
-  //   setIsLoading(true);
-  // };
-
-
-
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
+      <div className="w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
           <button className="text-xl"><FaTimes /></button>
           <Link
@@ -122,6 +108,14 @@ const Register = () => {
             <img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" />{" "}
             Sign In with Google
           </button>
+          <GoogleLogin
+            onSuccess={credentialResponse => {
+              console.log(credentialResponse);
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          />
           <button className="flex items-center border-2 border-green py-2 pl-4">
             <FaApple className="w-6 h-6 mr-3 text-blue-700" /> Sign In with
             Apple
