@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { useRouter } from "next/navigation";
