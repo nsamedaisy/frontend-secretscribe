@@ -7,10 +7,14 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { MdSend } from "react-icons/md";
 import { API_URL } from "../../_components/constant";
 import { useParams } from "next/navigation";
-import { IBucket } from "@/app/_services/utils";
-import RedirectPopup from "@/app/_components/popup";
+import { IBucket, IUser } from "@/app/_services/utils";
+// import RedirectPopup from "@/app/_components/popup";
 
-export default function page() {
+interface Props {
+  currentUser: IUser;
+}
+
+export default function page({ currentUser }: Props) {
   const [content, setContent] = useState('');
   const [bucket, setBucket] = useState<IBucket | null>(null);
   const [successMessage, SetSuccessMessage] = useState(false)
@@ -115,8 +119,8 @@ export default function page() {
         </form>)}
 
         {!successMessage && (<p className="text-green">
-          Say what do you think about daisyb3ll3 or Leave a feedback for
-          daisyb3ll3 anonymously using the form above.. 🥰 Thank You!! 😍😊
+          Say what do you think about {currentUser?.name} or Leave a feedback for
+          {currentUser?.name} anonymously using the form above.. 🥰 Thank You!! 😍😊
         </p>)}
         {/* after confirmation the user should be chance to create their own link  */}
         {successMessage && showCreateLink && (

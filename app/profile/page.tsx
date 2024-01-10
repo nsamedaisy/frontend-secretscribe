@@ -63,6 +63,16 @@ const userProfile = ({ currentUser }: Props) => {
     setTitle("")
   };
 
+  const shareOnWhatsApp = () => {
+    const message = encodeURIComponent(topicLink);
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${message}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  const shareOnFacebook = () => {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(topicLink)}`;
+    window.open(facebookUrl, "_blank");
+  };
 
 
   return (
@@ -116,12 +126,15 @@ const userProfile = ({ currentUser }: Props) => {
 
           <button
             className="flex rounded-md justify-center bg-watGreen py-2 pl-4"
-          // onClick={}
+            onClick={shareOnWhatsApp}
           >
             <FaWhatsapp className="w-6 h-6 mr-3" /> Share on WhatsApp
           </button>
 
-          <button className="flex rounded-md justify-center bg-blue-950 py-2 pl-4">
+          <button className="flex rounded-md justify-center bg-blue-950 py-2 pl-4 
+          "
+            onClick={shareOnFacebook}
+          >
             <FaFacebookSquare className="w-6 h-6 mr-3" /> Share on Facebook
           </button>
         </section>
