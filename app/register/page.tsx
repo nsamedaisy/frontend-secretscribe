@@ -7,6 +7,7 @@ import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
 import { ApiRes } from "../_services/utils";
+import { toast } from 'sonner';
 import Loader from "../_components/loader";
 
 
@@ -34,6 +35,7 @@ const Register = () => {
       router.push('/profile');
     } catch (error) {
       console.error("An error occurred on the frontend", error);
+      toast.error("An account already exist with this credentials")
     } finally {
       setIsLoading(false);
     }
