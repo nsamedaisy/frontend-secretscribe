@@ -12,7 +12,7 @@ import { FiSettings } from "react-icons/fi";
 import { CurrentUserGuard } from "../_services/ui";
 import { IUser } from "../_services/utils";
 import { useRouter } from "next/navigation";
-import { useStore } from '../hooks/useStore'
+// import { useStore } from '../hooks/useStore'
 import { googleLogout } from '@react-oauth/google'
 
 interface Props {
@@ -21,8 +21,7 @@ interface Props {
 
 const userProfile = ({ currentUser }: Props) => {
 
-  const { authData, setAuthData } = useStore()
-
+  // const { authData, setAuthData } = useStore()
   const router = useRouter()
 
   const handleViewMessages = () => {
@@ -70,7 +69,7 @@ const userProfile = ({ currentUser }: Props) => {
           Settings
           <FiSettings className="w-5 h-5 ml-3" />
         </button>
-        <button
+        {/* <button
           className="flex rounded-md my-6 justify-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
           onClick={() => {
             googleLogout()
@@ -79,7 +78,7 @@ const userProfile = ({ currentUser }: Props) => {
           }}>
           Logout
           <FiSettings className="w-5 h-5 ml-3" />
-        </button>
+        </button> */}
       </div>
     </div>
   );

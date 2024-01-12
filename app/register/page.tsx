@@ -7,8 +7,6 @@ import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
 import { ApiRes } from "../_services/utils";
-import { GoogleLogin } from '@react-oauth/google';
-
 
 
 const Register = () => {
@@ -108,14 +106,7 @@ const Register = () => {
             <img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" />{" "}
             Sign In with Google
           </button>
-          <GoogleLogin
-            onSuccess={credentialResponse => {
-              console.log(credentialResponse);
-            }}
-            onError={() => {
-              console.log('Login Failed');
-            }}
-          />
+
           <button className="flex items-center border-2 border-green py-2 pl-4">
             <FaApple className="w-6 h-6 mr-3 text-blue-700" /> Sign In with
             Apple

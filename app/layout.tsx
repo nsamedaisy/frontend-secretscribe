@@ -2,7 +2,8 @@
 import { GoogleOAuthProvider } from '@react-oauth/google'
 // import type { Metadata } from 'next'
 import './globals.css'
-import { Toaster, toast } from 'sonner'
+import { Toaster } from 'sonner'
+// import { GOOGLE_CLIENT_ID } from './_components/constant'
 
 
 
@@ -19,10 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleOAuthProvider clientId="GOOGLE_CLIENT_ID">
-        <body>{children}</body>
-        <Toaster richColors position='top-right' />
-      </GoogleOAuthProvider>
+      {/* <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}> */}
+      <body>{children}</body>
+      <Toaster richColors position='top-right' />
+      {/* </GoogleOAuthProvider> */}
     </html>
   )
 }

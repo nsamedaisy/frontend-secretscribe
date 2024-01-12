@@ -2,11 +2,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import { FaApple, FaEnvelope, FaFacebookF, FaTimes } from "react-icons/fa";
+import { FaEnvelope, FaTimes } from "react-icons/fa";
 import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from "next/navigation";
 import { ApiRes } from "../_services/utils";
+// import { GoogleLogin } from '@react-oauth/google';
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -73,6 +75,15 @@ const Login = () => {
           />
           <button className="border border-black py-3" type="submit">Login</button>
         </form>
+
+        {/* <GoogleLogin
+          onSuccess={credentialResponse => {
+            console.log(credentialResponse);
+          }}
+          onError={() => {
+            console.log('Login Failed');
+          }}
+        /> */}
 
         <p className="flex justify-center items-center py-2">
           <span className="border-b flex-grow"></span>
