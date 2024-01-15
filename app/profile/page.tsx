@@ -16,6 +16,7 @@ import { useState } from "react";
 import { API_URL, FRONT_END_URL } from '../_components/constant';
 import { toast } from 'sonner';
 import axios from "axios";
+import SettingsDropdown from "../settingDropDown/page";
 
 interface Props {
   currentUser: IUser;
@@ -24,9 +25,13 @@ interface Props {
 const userProfile = ({ currentUser }: Props) => {
   const [title, setTitle] = useState("")
   const [topicLink, setTopicLink] = useState<string>('');
-
+  const [isDropDown, setIsDropDown] = useState(false)
 
   const router = useRouter()
+
+  const toggleOpen = () => {
+    setIsDropDown(!isDropDown)
+  }
 
   const handleChange = (e: any) => {
     setTitle(e.target.value)
@@ -63,6 +68,22 @@ const userProfile = ({ currentUser }: Props) => {
     setTitle("")
   };
 
+  const shareOnWhatsApp = () => {
+    const message = encodeURIComponent(topicLink);
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${message}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  const shareOnFacebook = () => {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(topicLink)}`;
+    window.open(facebookUrl, "_blank");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    // setCurrentUser(null);
+    router.push("/login");
+  };
 
 
   return (
@@ -116,21 +137,26 @@ const userProfile = ({ currentUser }: Props) => {
 
           <button
             className="flex rounded-md justify-center bg-watGreen py-2 pl-4"
-          // onClick={}
+            onClick={shareOnWhatsApp}
           >
             <FaWhatsapp className="w-6 h-6 mr-3" /> Share on WhatsApp
           </button>
 
-          <button className="flex rounded-md justify-center bg-blue-950 py-2 pl-4">
+          <button className="flex rounded-md justify-center bg-blue-950 py-2 pl-4 
+          "
+            onClick={shareOnFacebook}
+          >
             <FaFacebookSquare className="w-6 h-6 mr-3" /> Share on Facebook
           </button>
         </section>
         <p className="border-b-4 my-3 w-[20vw]"></p>
 
-        <button className="flex rounded-md my-6 justify-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4">
+        <button onClick={toggleOpen} className="flex rounded-md my-6 justify-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4">
           Settings
           <FiSettings className="w-5 h-5 ml-3" />
         </button>
+        {isDropDown && <SettingsDropdown />}
+
       </div>
     </div>
   );

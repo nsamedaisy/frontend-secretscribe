@@ -7,6 +7,7 @@ import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
 import { ApiRes } from "../_services/utils";
+import { toast } from 'sonner';
 import Loader from "../_components/loader";
 
 
@@ -20,33 +21,31 @@ const Register = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
 
-    axios.post(API_URL + "/auth/signup", {
-      name,
-      email,
-      password,
-    })
-      // console.log(response.data);
-      .then((resp: ApiRes) => {
-        const token = resp.data.token;
+    try {
+      const response = await axios.post(API_URL + "/auth/signup", {
+        name,
+        email,
+        password,
+      });
 
-        localStorage.setItem("token", token);
-        router.push('/profile');
-      })
-
-      // Handle sign-up error, e.g., show error message
-      .catch((err) => {
-        console.error("An error occurred on the frontend", err);
-        console.log({ username: name, email: email, password: password });
-      })
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      router.push('/profile');
+    } catch (error) {
+      console.error("An error occurred on the frontend", error);
+      toast.error("An account already exist with this credentials")
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
       <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
-          <button className="text-xl"><FaTimes /></button>
+          <button onClick={() => { router.push('/') }} className="text-xl"><FaTimes /></button>
           <Link
             className="text-lg font-bold text-cream hover:underline"
             href="/login"
@@ -89,7 +88,7 @@ const Register = () => {
 
           <button
             disabled={isLoading}
-            title={isLoading ? "Signing up..." : "Sign up"} // Provide a string value for the title prop
+            title={isLoading ? "Signing up..." : "Sign up"}
             type="submit"
             className="flex items-center justify-center border-2 border-green py-2 text-white cursor-pointer"
           >

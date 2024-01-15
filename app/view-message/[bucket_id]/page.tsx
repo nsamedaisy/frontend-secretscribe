@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import Link from "next/link";
-import axios from 'axios';
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { API_URL } from "../../_components/constant";
@@ -11,12 +11,14 @@ export default function page() {
   const [messages, setMessages] = useState<any[]>([]);
   const params = useParams<{ bucket_id: string }>();
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const { data } = await axios.get(API_URL + '/message/bucket/' + params.bucket_id);
+        const { data } = await axios.get(
+          API_URL + "/message/bucket/" + params.bucket_id
+        );
         setMessages(data.messages);
       } catch (error) {
         console.error(error);
@@ -26,67 +28,73 @@ export default function page() {
     fetchMessages();
   }, []);
 
-
   const handleback = () => {
-    router.push('/view-message')
-  }
-
+    router.push("/view-message");
+  };
 
   return (
-    <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
-        <div onClick={handleback} className="bg-white text-black border border-gray-800 flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer">
-          <FaArrowLeft className="ml-3" /> <p>Go back to select a bucket</p>
+    <div className="bg-gradient-to-tr from-green to-cream min-h-screen bg-gradie flex items-center justify-center">
+      <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-cream text-black items-center flex flex-col">
+        <div
+          onClick={handleback}
+          className=" text-green border border-green flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer font-bold mb-5"
+        >
+          <FaArrowLeft /> <p> Select More Topics</p>
         </div>
-        <h1 className="text-5xl font-extrabold text-cream items-center">
+
+        <h1 className="text-4xl font-extrabold text-green items-center">
           My SecretScribe 😅{" "}
         </h1>
-        <p className="font-semibold w-[20vw] my-4">
-          👇 Scroll 👇 down or check 👇 out the messages that you have received
+        <p className="w-[30vw] font-serif items-center justify-center text-xl flex my-4">
+          👇 check 👇 out the messages that you have received
         </p>
 
         {/* Recieve secret message */}
         <div className="w-[20vw]">
-          <fieldset className="border-2 border-cream rounded p-4">
-            <legend className="text-sm font-semibold">Messages:</legend>
-            <div className="flex  flex-col mt-2 overflow-y-scroll h-[200px]">
-              <ul >
-                {messages?.map((message) => (
-                  <li className="mb-4 mr-2 rounded-lg bg-slate-100 px-4 py-4 text-black  text-base text-primary-600"
-                    role="alert" key={message._id}>{message.content}</li>
-                ))}
-              </ul>
-              <p className="text-sm mt-4">_anonymous Time sent</p>
-              <button className="border rounded-xl mt-3 py-1">
-                ✨ Share response ✨
-              </button>
-            </div>
-            {/* Place your received messages and time sent here */}
-          </fieldset>
+          {messages?.length > 0
+            ? messages.map((message) => (
+              <fieldset
+                key={message._id}
+                className="border-2 border-green rounded p-4 mt-4"
+              >
+                <legend className="text-sm font-semibold">Message:</legend>
+                <p className="font-extrabold">{message.content}</p>
+                <p className="text-sm mt-2">
+                  _anonymous {message.createdAt.toString()} time
+                </p>
+                <button className="border border-green rounded-xl mt-3 py-1 text-sm px-1">
+                  ✨ Share response ✨
+                </button>
+              </fieldset>
+            ))
+            : messages?.length === 0 && (
+              <fieldset className="border-2 border-red-600 text-red-500 font-bold rounded p-3 my-5">
+                <p>
+                  Sorry 😔 you haven't received any message in the past 48
+                  hours with regards to this topic. Share your link with your
+                  friends to get secret message(s).
+                </p>
+              </fieldset>
+            )}
 
-          <fieldset className="border-2 border-cream text-green font-bold rounded p-3 mt-3">
+          {/* <fieldset className="border-2 border-cream text-green font-bold rounded p-3 mt-3">
             <p>
               You Have Reached The End! 🏁 🙋 Ask your friends to send more
               messages or view Archived Messages
             </p>
-          </fieldset>
-
-          <fieldset className="border-2 hidden border-red-600 text-red-700 font-bold rounded p-3 mt-3">
-            {/* Found no message text  */}
-            <p> Sorry 😔 you haven't recieve any message in the past 48hours. Share your link to yours friends to get secret message(s)</p>
-          </fieldset>
+          </fieldset> */}
         </div>
 
-        <button className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2">
+        {!messages && (<button className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2">
           <img src="/time.png" alt="time logo" className="w-8 h-6 mr-3" />
           Load More
-        </button>
+        </button>)}
 
-        <p className="border-b-2 w-[20vw]"></p>
+        <p className="border-b-2 border-green w-[20vw]"></p>
 
         <Link
           href="/profile"
-          className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+          className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] text-cream border-2 border-green py-2 pl-4 font-extrabold"
         >
           Go back
           <FaArrowLeft className="ml-3" />
@@ -94,4 +102,4 @@ export default function page() {
       </div>
     </div>
   );
-};
+}
