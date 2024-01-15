@@ -7,6 +7,7 @@ import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
 import { ApiRes } from "../_services/utils";
+import Loader from "../_components/loader";
 import Image from "next/image";
 
 
@@ -37,10 +38,26 @@ const Register = () => {
 
       // Handle sign-up error, e.g., show error message
       .catch((err) => {
-        console.error("An error occure on frontend", err);
-        // console.log({ username: name, email: email, password: password });
+        console.error("An error occurred on the frontend", err);
+        console.log({ username: name, email: email, password: password });
       })
   };
+
+
+  // const handleGoogleSignin = async () => {
+  //   const { data, error } = await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       queryParams: {
+  //         access_type: "offline",
+  //         prompt: "consent",
+  //       },
+  //       redirectTo: urlToUse(),
+  //     },
+  //   });
+  //   setIsLoading(true);
+  // };
+
 
 
   return (
@@ -65,31 +82,42 @@ const Register = () => {
           <h1 className="text-3xl my-4 font-thin font-marker">ecretScribe</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex  flex-col ml-[15%] w-[70%] bg-green">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-6 w-[60%] ml-[20%] mt-8 text-white font-extrabold font-lobster mb-5">
           <input
             type="text"
             placeholder="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white focus:outline-none"
+            className="px-3 border-2 border-cream py-2 bg-green text-white focus:outline-none"
           />
           <input
             placeholder="Email"
             type="email"
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white border-t-0 focus:outline-none"
+            className="px-3 border-2 border-cream py-2 bg-green text-white focus:outline-none"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             placeholder="Password"
             type="password"
-            className="px-3 border-2 border-cream py-3 bg-transparent text-white border-t-0 focus:outline-none"
+            className="px-3 border-2 border-cream py-2 bg-green text-white focus:outline-none"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button disabled={isLoading} title={isLoading ? "signing up..." : "sign up"} type="submit" className="flex items-center justify-center border-2 border-green py-2 text-white">
-            <FaLockOpen className="w-5 h-5 mr-3 text-red-700" /> Sign Up
+          <button
+            disabled={isLoading}
+            title={isLoading ? "Signing up..." : "Sign up"} // Provide a string value for the title prop
+            type="submit"
+            className="flex items-center justify-center border-2 border-green py-2 text-white cursor-pointer"
+          >
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                <FaLockOpen className="w-5 h-5 mr-3 text-red-700" /> Sign Up
+              </>
+            )}
           </button>
         </form>
 
