@@ -7,6 +7,7 @@ import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
 import { ApiRes } from "../_services/utils";
+import Image from "next/image";
 
 
 const Register = () => {
@@ -100,12 +101,12 @@ const Register = () => {
             <span className="border-b flex-grow"></span>
           </p>
 
-          <button
-            // onClick={() => handleGoogleSignin()}
+          {/* <button
+            onClick={() => handleGoogleSignin()}
             className="flex items-center border-2 border-green py-2 pl-4">
-            <img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" />{" "}
+            <Image src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" />{" "}
             Sign In with Google
-          </button>
+          </button> */}
 
           <button className="flex items-center border-2 border-green py-2 pl-4">
             <FaApple className="w-6 h-6 mr-3 text-blue-700" /> Sign In with

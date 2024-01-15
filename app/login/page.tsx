@@ -7,7 +7,9 @@ import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from "next/navigation";
 import { ApiRes } from "../_services/utils";
-// import { GoogleLogin } from '@react-oauth/google';
+import Image from "next/image";
+import { signIn } from "next-auth/react";
+
 
 
 const Login = () => {
@@ -76,14 +78,15 @@ const Login = () => {
           <button className="border border-black py-3" type="submit">Login</button>
         </form>
 
-        {/* <GoogleLogin
-          onSuccess={credentialResponse => {
-            console.log(credentialResponse);
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        /> */}
+        <button
+          onClick={() => signIn("google")}
+          className="flex items-center gap-4 shadow-xl rounded-lg pl-3"
+        >
+          <Image src="/google.png" alt="goole_Image" height={30} width={30} />
+          <span className="bg-blue-500 text-white px-4 py-3">
+            Sign in with Google
+          </span>
+        </button>
 
         <p className="flex justify-center items-center py-2">
           <span className="border-b flex-grow"></span>
