@@ -1,7 +1,9 @@
+"use client"
 import Link from "next/link";
-import React from "react";
-// import { useState } from "react";
+import React, { useState } from "react";
+import { FiMenu } from "react-icons/fi";
 
+// import { useState } from "react";
 // import { FiMenu } from 'react-icons/fi';
 
 const LandingPage = () => {
@@ -11,6 +13,16 @@ const LandingPage = () => {
   //   setIsMenuOpen(!isMenuOpen);
   // };
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="bg-green text-cream min-h-screen">
       <div className="h-[95vh]">
@@ -19,9 +31,9 @@ const LandingPage = () => {
             <img
               src="/sslogo.png"
               alt="SecretScribe Logo"
-              className="hidden md:block w-16 h-16 lg:block bg-gray-800"
+              className=" md:block w-16 h-16 lg:block bg-gray-800"
             />
-            <h1 className="hidden sm:block text-5xl font-extrabold font-marker">
+            <h1 className="sm:text-2xl sm:block text-4xl font-extrabold font-marker">
               ecretScribe
             </h1>
           </div>
@@ -53,6 +65,48 @@ const LandingPage = () => {
               </li>
             </ul>
           </nav>
+
+          <div className="lg:md:hidden ">
+            <button
+              aria-controls="dropdown-menu"
+              aria-expanded={isOpen}
+              onClick={toggleDropdown}
+            ><FiMenu className="ml-5  mt-4 h-8 w-10 bg-green" /></button>
+            <ul
+              id="dropdown-menu"
+              className={`absolute z-10 w-40 shadow px-1 rounded border  mr-6 right-0 ${isOpen ? 'block' : 'hidden'}`}
+            >
+              <ul className=" bg-green space-y-3">
+                <li>
+                  <Link
+                    className="text-lg font-medium text-cream hover:text-white hover:underline"
+                    href="/"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <p className="border-b-2 border-black"></p>
+
+                <li>
+                  <Link
+                    href="/register"
+                    className="text-lg font-medium text-cream hover:text-white hover:underline"
+                  >
+                    Get Started
+                  </Link>
+                </li>
+                <p className="border-b-2"></p>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-lg font-medium text-cream hover:text-white hover:underline"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </ul>
+          </div>
         </header>
 
         <section className="pt-20 pb-20 sm:px-8 md:px-16 lg:px-60">
