@@ -74,11 +74,11 @@ export default function page() {
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[25%] sm:w-[25%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-t from-cream to-green">
+      <div className="w-[375px] sm:w-[25%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-t from-cream to-green">
 
         {/* success message  */}
         {successMessage && (
-          <p className="text-5xl font-extrabold font-mono text-lime-100 mb-4 flex justify-center items-center">
+          <p className="text-3xl font-extrabold font-mono text-lime-100 mb-4 flex justify-center items-center">
             Message sent successfully 🎉🎉🎉
           </p>
         )}
@@ -103,11 +103,11 @@ export default function page() {
           </div>
 
           <p className="mt-6 font-mono text-sm">254 characters remaining</p>
-          <hr className="mt-2 border-b-2 w-[20vw]" />
+          <hr className="mt-2 border-b-2" />
 
           <button
             // href="/profile"
-            className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+            className="flex rounded-md my-6 w-full justify-center items-center bg-gradient-to-tr from-green to-cream border-2 border-green py-2 pl-4"
           >
             Send Message
             <MdSend className="ml-3" />
@@ -125,13 +125,13 @@ export default function page() {
               Click here 👇🏿 to create your own secret message link!
             </p>
             <Link
-              href="/register"
+              href="/landing"
               className="flex rounded-md my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 text-lg font-bold text-lime-100"
             >
               🔏 Create Link
             </Link>
             <Link
-              href="/"
+              href="/write-message"
               className="text-red-500 mt-2 flex rounded-md my-6 justify-center items-center w-[20vw] border-2 border-red-600 text-lg font-bold"
               onClick={handleClose}
             >

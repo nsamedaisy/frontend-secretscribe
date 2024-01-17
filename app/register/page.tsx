@@ -1,14 +1,14 @@
 "use client"
 import React from "react";
 import Link from "next/link";
-import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
+import { FaApple, FaLockOpen } from "react-icons/fa";
+import { RiArrowGoBackFill } from "react-icons/ri";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../_components/constant";
 import { useRouter } from 'next/navigation'
 import { ApiRes } from "../_services/utils";
 import Loader from "../_components/loader";
-import Image from "next/image";
 
 
 const Register = () => {
@@ -58,13 +58,16 @@ const Register = () => {
   //   setIsLoading(true);
   // };
 
+  const handleClick = () => {
+    router.push('/')
+  }
 
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
+      <div className="w-[375px] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
-          <button className="text-xl"><FaTimes /></button>
+          <button className="text-xl" onClick={handleClick}><RiArrowGoBackFill /></button>
           <Link
             className="text-lg font-bold text-cream hover:underline"
             href="/login"
