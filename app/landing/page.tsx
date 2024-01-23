@@ -113,13 +113,13 @@ const LandingPage = () => {
           <img
             src="/ss.png"
             alt="cartoon phone"
-            className="mt-10 h-[55vh] mx-auto"
+            className="mt-10 h-[55vh] mx-auto sm:h-[30vh]"
           />
           <div>
             <p className="text-center mt-16 text-3xl font-poppins">
               Anonymously
             </p>
-            <p className="mt-6 text-7xl font-extrabold font-marker text-cream text-center">
+            <p className="mt-6 text-7xl font-extrabold font-marker text-cream text-center sm:mb-10">
               Share Thoughts, and Confessions In Secrets.
             </p>
           </div>
@@ -127,7 +127,7 @@ const LandingPage = () => {
       </div>
 
       <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-60 bg-cream text-gray-800">
-        <h2 className="text-5xl font-extrabold font-abril pb-20 leading-relaxed">
+        <h2 className="text-4xl font-extrabold font-abril pb-20 leading-relaxed">
           SecretScribe is an interactive anonymous messaging app. Create your
           Profile Link and Send it to all your contacts and(or) Facebook friends to know what they think about you, a particular think or the society. SecretScribe is free!
         </h2>
