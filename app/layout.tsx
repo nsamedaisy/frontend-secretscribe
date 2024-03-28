@@ -1,10 +1,9 @@
 "use client"
+import { GoogleOAuthProvider } from '@react-oauth/google'
 // import type { Metadata } from 'next'
 import './globals.css'
-import { Toaster, toast } from 'sonner'
-
-
-
+import { Toaster } from 'sonner'
+import { NextAuthProvider } from "./Providers";
 
 // export const metadata: Metadata = {
 //   title: 'Create Next App',
@@ -18,8 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
-      <Toaster richColors position='top-right' />
+      <NextAuthProvider>
+        <body>{children}</body>
+        <Toaster richColors position='top-right' />
+      </NextAuthProvider>
     </html>
   )
 }

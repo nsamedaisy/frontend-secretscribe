@@ -33,7 +33,7 @@ export default function CurrentUserGuard(Component: React.JSXElementConstructor<
             Authorization: `bearer ${token}`,
           }
         });
-        console.log({ current_user_res: res })
+        // console.log({ current_user_res: res })
         const user = res.data.user;
 
         set_current_user(user);

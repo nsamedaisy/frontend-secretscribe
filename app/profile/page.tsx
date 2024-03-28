@@ -12,9 +12,10 @@ import { FiSettings } from "react-icons/fi";
 import { CurrentUserGuard } from "../_services/ui";
 import { IUser } from "../_services/utils";
 import { useRouter } from "next/navigation";
+import { googleLogout } from '@react-oauth/google'
 import { useState } from "react";
-import { API_URL, FRONT_END_URL } from '../_components/constant';
-import { toast } from 'sonner';
+import { API_URL, FRONT_END_URL } from "../_components/constant";
+import { toast } from "sonner";
 import axios from "axios";
 
 interface Props {
@@ -26,6 +27,7 @@ const userProfile = ({ currentUser }: Props) => {
   const [topicLink, setTopicLink] = useState<string>('');
 
 
+  // const { authData, setAuthData } = useStore()
   const router = useRouter()
 
   const handleChange = (e: any) => {
@@ -67,14 +69,14 @@ const userProfile = ({ currentUser }: Props) => {
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[30%] sm:w-[33%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center justify-center flex flex-col">
-        <h1 className="text-5xl font-extrabold font-mono mb-4 items-center first-letter:capitalize">
+      <div className="w-[375px] sm:w-[33%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center justify-center flex flex-col">
+        <h1 className="text-2xl font-extrabold font-mono mb-4 items-center first-letter:capitalize">
           {currentUser?.name}'s Profile ❤️
         </h1>
 
         <p className="w-[80%] font-serif font-semibold">
           What is it that you want others to talk about without revealing themselves? (e.g Politics 👌, social life ❤️).
-          Write a topic of concern and generate your profile link, share ❤️ to get a response from user(s) ❤️. Go to
+          Write a topic of concern(optional) and generate your profile link, share ❤️ to get a response from user(s) ❤️. Go to
           "View Messages" to check out the responses. 👌
         </p>
 
@@ -88,13 +90,22 @@ const userProfile = ({ currentUser }: Props) => {
             className="px-3 border rounded-md border-white py-3 bg-transparent text-white focus:outline-none placeholder:text-cream w-[100%]"
           />
 
-          <div className="flex justify-between p-3 items-center w-full">
-            {topicLink && (
-              <p className="text-white text-sm max-w-[20%] whitespace-normal flex flex-wrap fixed ml-16">
+          <div className="flex justify-between min-h-[30px] p-3 items-center w-full border border-white">
+            {/* {topicLink && (
+              <p className="text-white text-sm  whitespace-normal flex flex-wrap ml-16">
                 {topicLink}
               </p>
-            )}
-            <FaRegCopy onClick={copyLink} size="1.7rem" className="cursor-pointer" />
+            )} */}
+            {topicLink &&
+              <div className="flex w-full justify-between ">
+                <p>{topicLink.slice(0, 14)}...</p>
+                <FaRegCopy onClick={copyLink} size="1.7rem" className="cursor-pointer" />
+
+              </div>
+
+
+            }
+
           </div>
           <button
             onClick={createBucket}
@@ -103,16 +114,16 @@ const userProfile = ({ currentUser }: Props) => {
             Generate Link
           </button>
 
-          <p className="border-b-2 my-2 w-[20vw]"></p>
+          <p className="border-b-2 my-2"></p>
 
           <Link
             href="/view-message"
-            className="flex rounded-md justify-center bg-cream text-green items-center w-[20vw] border-2 border-green py-2 pl-4"
+            className="flex rounded-md justify-center bg-cream text-green items-center border-2 border-green py-2 pl-4"
           >
             View Messages <FaArrowRight className="ml-3" />
           </Link>
 
-          <p className="border-b-2 my-3 w-[20vw]"></p>
+          <p className="border-b-2 my-3 "></p>
 
           <button
             className="flex rounded-md justify-center bg-watGreen py-2 pl-4"
@@ -124,13 +135,26 @@ const userProfile = ({ currentUser }: Props) => {
           <button className="flex rounded-md justify-center bg-blue-950 py-2 pl-4">
             <FaFacebookSquare className="w-6 h-6 mr-3" /> Share on Facebook
           </button>
-        </section>
-        <p className="border-b-4 my-3 w-[20vw]"></p>
 
-        <button className="flex rounded-md my-6 justify-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4">
-          Settings
+          <p className="border-b-2 my-3 "></p>
+
+          <button className="flex rounded-md my-6 justify-center bg-gradient-to-tr from-green to-cream border-2 border-green py-2 pl-4">
+            Settings
+            <FiSettings className="w-5 h-5 ml-3" />
+          </button>
+
+        </section>
+
+        {/* <button
+          className="flex rounded-md my-6 justify-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+          onClick={() => {
+            googleLogout()
+            localStorage.setItem('authData', '{}')
+            setAuthData({})
+          }}>
+          Logout
           <FiSettings className="w-5 h-5 ml-3" />
-        </button>
+        </button> */}
       </div>
     </div>
   );

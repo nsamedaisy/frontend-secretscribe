@@ -1,7 +1,8 @@
 "use client"
 import React from "react";
 import Link from "next/link";
-import { FaApple, FaLockOpen, FaTimes } from "react-icons/fa";
+import { FaApple, FaLockOpen } from "react-icons/fa";
+import { RiArrowGoBackFill } from "react-icons/ri";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../_components/constant";
@@ -42,11 +43,31 @@ const Register = () => {
       })
   };
 
+
+  // const handleGoogleSignin = async () => {
+  //   const { data, error } = await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //     options: {
+  //       queryParams: {
+  //         access_type: "offline",
+  //         prompt: "consent",
+  //       },
+  //       redirectTo: urlToUse(),
+  //     },
+  //   });
+  //   setIsLoading(true);
+  // };
+
+  const handleClick = () => {
+    router.push('/')
+  }
+
+
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-black min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[25%] sm:w-[25%] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
+      <div className="w-[375px] h-[45%] bg- py-10 shadow-2xl px-9 bg-gradient-to-tr from-cream to-green">
         <header className="flex justify-between pb-6 items-center">
-          <button className="text-xl"><FaTimes /></button>
+          <button className="text-xl" onClick={handleClick}><RiArrowGoBackFill /></button>
           <Link
             className="text-lg font-bold text-cream hover:underline"
             href="/login"
@@ -111,12 +132,8 @@ const Register = () => {
             <span className="border-b flex-grow"></span>
           </p>
 
-          <button
-            // onClick={() => handleGoogleSignin()}
-            className="flex items-center border-2 border-green py-2 pl-4">
-            <img src="/google.png" alt="Google logo" className="w-8 h-8 mr-3" />{" "}
-            Sign In with Google
-          </button>
+  
+
           <button className="flex items-center border-2 border-green py-2 pl-4">
             <FaApple className="w-6 h-6 mr-3 text-blue-700" /> Sign In with
             Apple

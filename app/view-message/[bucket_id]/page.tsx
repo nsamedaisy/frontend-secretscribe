@@ -34,19 +34,19 @@ export default function page() {
 
   return (
     <div className="bg-gradient-to-tr from-green to-cream text-white min-h-screen bg-gradie flex items-center justify-center">
-      <div className="w-[30%] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
-        <div onClick={handleback} className="bg-white text-black border border-gray-800 flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer">
+      <div className="w-[375px] sm:w-[30%] h-[45%] py-10 rounded shadow-2xl px-9 bg-gradient-to-tr from-cream to-green items-center flex flex-col">
+        <div onClick={handleback} className="bg-white text-black border border-gray-800 flex flex-row justify-between items-center gap-4 px-4 py-3 rounded-md cursor-pointer mb-3">
           <FaArrowLeft className="ml-3" /> <p>Go back to select a bucket</p>
         </div>
-        <h1 className="text-5xl font-extrabold text-cream items-center">
+        <h1 className="text-2xl font-semibold text-cream items-center pb-3">
           My SecretScribe 😅{" "}
         </h1>
-        <p className="font-semibold w-[20vw] my-4">
+        <p className="font-semibold my-4">
           👇 Scroll 👇 down or check 👇 out the messages that you have received
         </p>
 
         {/* Recieve secret message */}
-        <div className="w-[20vw]">
+        <div className="">
           <fieldset className="border-2 border-cream rounded p-4">
             <legend className="text-sm font-semibold">Messages:</legend>
             <div className="flex  flex-col mt-2 overflow-y-scroll h-[200px]">
@@ -77,16 +77,16 @@ export default function page() {
           </fieldset>
         </div>
 
-        <button className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2">
+        <button className="flex rounded-xl my-6 w-full justify-center items-center bg-gradient-to-tr from-green to-cream  border-2 border-green py-2">
           <img src="/time.png" alt="time logo" className="w-8 h-6 mr-3" />
           Load More
         </button>
 
-        <p className="border-b-2 w-[20vw]"></p>
+        <p className="border-b-2 w-full"></p>
 
         <Link
           href="/profile"
-          className="flex rounded-xl my-6 justify-center items-center bg-gradient-to-tr from-green to-cream w-[20vw] border-2 border-green py-2 pl-4"
+          className="flex rounded-xl my-6 w-full justify-center items-center bg-gradient-to-tr from-green to-cream  border-2 border-green py-2 pl-4"
         >
           Go back
           <FaArrowLeft className="ml-3" />
